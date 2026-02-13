@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Moonlit Meadow Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2f4a 50%, #0f1e33 100%);
+            color: #e8f1f5;
+            line-height: 1.8;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated stars background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+            display: block;
+            filter: drop-shadow(0 10px 30px rgba(248, 239, 186, 0.3));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 2.8em;
+            color: #f8efba;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(248, 239, 186, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #a8c5d6;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 50px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #f8efba;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(248, 239, 186, 0.3);
+            display: flex;
+            align-items: center;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h2::before {
+            content: "🌙";
+            margin-right: 15px;
+            font-size: 0.9em;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #c8d9e3;
+            font-size: 1.05em;
+        }
+
+        strong {
+            color: #f8efba;
+            font-weight: 600;
+        }
+
+        ul {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            color: #c8d9e3;
+            position: relative;
+        }
+
+        li::marker {
+            color: #f8efba;
+        }
+
+        a {
+            color: #85b7d9;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
+        }
+
+        a:hover {
+            color: #f8efba;
+            border-bottom: 1px solid #f8efba;
+        }
+
+        .contact {
+            background: rgba(248, 239, 186, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border-left: 4px solid #f8efba;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            color: #7a9db3;
+            font-size: 0.9em;
+        }
+
+        .meadow-grass {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, rgba(106, 139, 155, 0.2) 0%, transparent 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .content {
+                padding: 30px 25px;
+            }
+
+            .logo {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="meadow-grass"></div>
+
+    <div class="container">
+        <header>
+            <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Moon -->
+                <defs>
+                    <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" style="stop-color:#f8efba;stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:#f8efba;stop-opacity:0" />
+                    </radialGradient>
+                </defs>
+                <circle cx="70" cy="60" r="50" fill="url(#moonGlow)" opacity="0.3"/>
+                <path d="M 70 20 Q 90 40 90 60 Q 90 80 70 100 Q 50 80 50 60 Q 50 40 70 20" fill="#f8efba"/>
+                <circle cx="65" cy="45" r="8" fill="#e8d89a" opacity="0.5"/>
+                <circle cx="75" cy="70" r="6" fill="#e8d89a" opacity="0.5"/>
+                
+                <!-- Stars -->
+                <circle cx="120" cy="35" r="2" fill="#fff"/>
+                <circle cx="135" cy="50" r="1.5" fill="#fff"/>
+                <circle cx="110" cy="55" r="1" fill="#fff"/>
+                <circle cx="145" cy="70" r="2" fill="#fff"/>
+                <circle cx="125" cy="80" r="1.5" fill="#fff"/>
+                
+                <!-- Grass -->
+                <path d="M 30 140 Q 35 120 40 140" stroke="#6a8b9b" stroke-width="2" fill="none"/>
+                <path d="M 45 140 Q 50 115 55 140" stroke="#7a9db3" stroke-width="2" fill="none"/>
+                <path d="M 60 140 Q 65 125 70 140" stroke="#6a8b9b" stroke-width="2" fill="none"/>
+                <path d="M 140 140 Q 145 120 150 140" stroke="#7a9db3" stroke-width="2" fill="none"/>
+                <path d="M 155 140 Q 160 115 165 140" stroke="#6a8b9b" stroke-width="2" fill="none"/>
+                
+                <!-- Game Controller -->
+                <ellipse cx="100" cy="130" rx="40" ry="25" fill="#1a2f4a" stroke="#f8efba" stroke-width="2"/>
+                <rect x="85" y="122" width="3" height="8" fill="#f8efba" rx="1"/>
+                <rect x="90" y="127" width="8" height="3" fill="#f8efba" rx="1"/>
+                <circle cx="115" cy="125" r="3" fill="#f8efba"/>
+                <circle cx="122" cy="130" r="3" fill="#f8efba"/>
+            </svg>
+            
+            <h1>Moonlit Meadow Studio</h1>
+            <div class="subtitle">Privacy Policy</div>
+        </header>
+
+        <div class="content">
+            <h2>Overview</h2>
+            <p>This application does not collect, store, or process any personal data from users. We do not require accounts, registration, or any form of payment.</p>
+
+            <h2>Advertising</h2>
+            <p>The app displays advertisements provided by third-party ad networks. These ad networks may collect certain data to show relevant ads. This data collection is handled entirely by the ad networks and is subject to their own privacy policies.</p>
+
+            <p><strong>Ad networks may collect:</strong></p>
+            <ul>
+                <li>Device information (device type, operating system)</li>
+                <li>Ad interaction data</li>
+                <li>IP address</li>
+                <li>Advertising identifiers (such as Google Advertising ID or IDFA)</li>
+            </ul>
+
+            <p><strong>We do not:</strong></p>
+            <ul>
+                <li>Collect or store any of this data ourselves</li>
+                <li>Track your activity</li>
+                <li>Create user profiles</li>
+                <li>Share your data with anyone (because we don't collect it)</li>
+            </ul>
+
+            <h2>Third-Party Services</h2>
+            <p>Please review the privacy policies of our ad network providers:</p>
+            <ul>
+                <li><a href="https://policies.google.com/privacy" target="_blank">Google AdMob Privacy Policy</a></li>
+                <li><a href="https://yandex.com/legal/confidential/" target="_blank">Yandex Advertising Network Privacy Policy</a></li>
+            </ul>
+
+            <h2>Children's Privacy</h2>
+            <p>This app does not knowingly collect any information from children.</p>
+
+            <h2>Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page.</p>
+
+            <h2>Contact Us</h2>
+            <div class="contact">
+                <p style="margin-bottom: 0;">If you have any questions about this Privacy Policy, please contact us at: <a href="mailto:moonlitmeadowstudio@yandex.ru">moonlitmeadowstudio@yandex.ru</a></p>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 Moonlit Meadow Studio. All rights reserved.</p>
+            <p>Last updated: February 13, 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        // Generate random stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+</html>
