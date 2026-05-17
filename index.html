@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniil Filippov — App Developer</title>
+  <meta name="description" content="Developer portfolio by Daniil Filippov with iOS applications and contacts.">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="Developer logo">
+        <span>Daniil Filippov</span>
+      </a>
+      <div class="nav-actions">
+        <div class="nav-links">
+          <a class="active" href="index.html" data-i18n-ru="Главная" data-i18n-en="Home">Главная</a>
+          <a href="app.html" data-i18n-ru="Приложения" data-i18n-en="Apps">Приложения</a>
+          <a href="privacy.html" data-i18n-ru="Политика" data-i18n-en="Privacy">Политика</a>
+          <a href="contacts.html" data-i18n-ru="Контакты" data-i18n-en="Contacts">Контакты</a>
+        </div>
+        <div class="lang-switch" aria-label="Language switcher">
+          <button type="button" data-lang-button="ru">RU</button>
+          <button type="button" data-lang-button="en">EN</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div>
+        <p class="eyebrow" data-i18n-ru="iOS apps and product design" data-i18n-en="iOS apps and product design">iOS apps and product design</p>
+        <h1 data-i18n-ru="Приложения Daniil Filippov" data-i18n-en="Apps by Daniil Filippov">Приложения Daniil Filippov</h1>
+        <p data-i18n-ru="Здесь будут собраны приложения, которые я разрабатываю: с описанием, скриншотами, документами и контактами для поддержки." data-i18n-en="A home for the apps I build, with descriptions, screenshots, privacy documents, and support contacts.">Здесь будут собраны приложения, которые я разрабатываю: с описанием, скриншотами, документами и контактами для поддержки.</p>
+        <div class="actions">
+          <a class="button primary" href="#apps" data-i18n-ru="Смотреть приложения" data-i18n-en="View apps">Смотреть приложения</a>
+          <a class="button" href="contacts.html" data-i18n-ru="Связаться" data-i18n-en="Contact">Связаться</a>
+        </div>
+      </div>
+
+      <aside class="developer-card">
+        <div class="developer-row">
+          <div class="developer-avatar" aria-hidden="true">DF</div>
+          <div>
+            <h2>Daniil Filippov</h2>
+            <p data-i18n-ru="Разработчик мобильных приложений. Фокус на понятных продуктах для повседневных задач." data-i18n-en="Mobile app developer focused on clear products for everyday routines.">Разработчик мобильных приложений. Фокус на понятных продуктах для повседневных задач.</p>
+          </div>
+        </div>
+        <div class="mini-stats">
+          <div class="mini-stat">
+            <strong>1</strong>
+            <span data-i18n-ru="опубликованное приложение" data-i18n-en="published app">опубликованное приложение</span>
+          </div>
+          <div class="mini-stat">
+            <strong>iOS</strong>
+            <span data-i18n-ru="основная платформа" data-i18n-en="main platform">основная платформа</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="apps" class="section">
+      <div class="section-head">
+        <h2 data-i18n-ru="Приложения" data-i18n-en="Apps">Приложения</h2>
+        <p data-i18n-ru="Каталог будет расширяться по мере выхода новых проектов. Сейчас доступен Domik Tracker." data-i18n-en="This catalog will grow as new projects are released. Domik Tracker is available now.">Каталог будет расширяться по мере выхода новых проектов. Сейчас доступен Domik Tracker.</p>
+      </div>
+
+      <div class="apps-grid">
+        <article class="app-card">
+          <img src="assets/logo.png" alt="Domik Tracker app icon">
+          <div>
+            <p class="eyebrow">Domik Tracker</p>
+            <h3 data-i18n-ru="Домашние дела в одном месте" data-i18n-en="Home routines in one place">Домашние дела в одном месте</h3>
+            <p data-i18n-ru="Задачи, покупки, пространства и награды для семьи или домашней группы." data-i18n-en="Tasks, shopping, spaces, and rewards for a family or household group.">Задачи, покупки, пространства и награды для семьи или домашней группы.</p>
+            <div class="tag-row">
+              <span class="tag">iOS</span>
+              <span class="tag" data-i18n-ru="Дом" data-i18n-en="Home">Дом</span>
+              <span class="tag" data-i18n-ru="Задачи" data-i18n-en="Tasks">Задачи</span>
+              <span class="tag" data-i18n-ru="Награды" data-i18n-en="Rewards">Награды</span>
+            </div>
+          </div>
+          <a class="button primary" href="app.html" data-i18n-ru="Открыть" data-i18n-en="Open">Открыть</a>
+        </article>
+
+        <article class="soon-card">
+          <h3 data-i18n-ru="Будущие приложения" data-i18n-en="Future apps">Будущие приложения</h3>
+          <p data-i18n-ru="Здесь появятся следующие проекты." data-i18n-en="Future projects will appear here.">Здесь появятся следующие проекты.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 data-i18n-ru="Domik Tracker" data-i18n-en="Domik Tracker">Domik Tracker</h2>
+      </div>
+      <div class="screens-strip active" data-lang-panel="ru" aria-label="Domik Tracker screenshots">
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" alt="Скриншот сводки Domik Tracker"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_3_2026-05-17_14-21-50.jpg" alt="Скриншот задач Domik Tracker"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_4_2026-05-17_14-21-50.jpg" alt="Скриншот покупок Domik Tracker"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_5_2026-05-17_14-21-50.jpg" alt="Скриншот наград Domik Tracker"></figure>
+      </div>
+      <div class="screens-strip" data-lang-panel="en" aria-label="Domik Tracker screenshots">
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_13_2026-05-17_14-21-50.jpg" alt="Domik Tracker dashboard screenshot"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_9_2026-05-17_14-21-50.jpg" alt="Domik Tracker tasks screenshot"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_10_2026-05-17_14-21-50.jpg" alt="Domik Tracker shopping screenshot"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_12_2026-05-17_14-21-50.jpg" alt="Domik Tracker rewards screenshot"></figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>© 2026 Daniil Filippov</span>
+      <a href="mailto:moonlitmeadowstudio@gmail.com">moonlitmeadowstudio@gmail.com</a>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

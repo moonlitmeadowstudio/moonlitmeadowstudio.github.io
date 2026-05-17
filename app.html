@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Domik Tracker — Daniil Filippov</title>
+  <meta name="description" content="Domik Tracker app by Daniil Filippov.">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="Developer logo">
+        <span>Daniil Filippov</span>
+      </a>
+      <div class="nav-actions">
+        <div class="nav-links">
+          <a href="index.html" data-i18n-ru="Главная" data-i18n-en="Home">Главная</a>
+          <a class="active" href="app.html" data-i18n-ru="Приложения" data-i18n-en="Apps">Приложения</a>
+          <a href="privacy.html" data-i18n-ru="Политика" data-i18n-en="Privacy">Политика</a>
+          <a href="contacts.html" data-i18n-ru="Контакты" data-i18n-en="Contacts">Контакты</a>
+        </div>
+        <div class="lang-switch" aria-label="Language switcher">
+          <button type="button" data-lang-button="ru">RU</button>
+          <button type="button" data-lang-button="en">EN</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="app-hero">
+      <div>
+        <p class="eyebrow" data-i18n-ru="Приложение" data-i18n-en="Application">Приложение</p>
+        <h1>Domik Tracker</h1>
+        <p data-i18n-ru="Помогает семье распределять домашние дела, вести покупки, управлять пространствами и мотивировать участников через баллы и награды." data-i18n-en="Helps a household manage chores, shopping, spaces, and motivation through points and rewards.">Помогает семье распределять домашние дела, вести покупки, управлять пространствами и мотивировать участников через баллы и награды.</p>
+        <div class="actions">
+          <a class="button primary" href="#screenshots" data-i18n-ru="Скриншоты" data-i18n-en="Screenshots">Скриншоты</a>
+          <a class="button" href="privacy.html" data-i18n-ru="Политика конфиденциальности" data-i18n-en="Privacy policy">Политика конфиденциальности</a>
+        </div>
+      </div>
+
+      <aside class="app-hero-card">
+        <img src="assets/logo.png" alt="Domik Tracker app icon">
+        <h2 data-i18n-ru="Домашние дела становятся понятнее" data-i18n-en="A clearer way to run a home">Домашние дела становятся понятнее</h2>
+        <p data-i18n-ru="Domik Tracker помогает семье быстро договориться о задачах, не забывать о покупках и видеть вклад каждого участника через баллы и награды." data-i18n-en="Domik Tracker helps households agree on chores faster, keep shopping under control, and make everyone's contribution visible with points and rewards.">Domik Tracker помогает семье быстро договориться о задачах, не забывать о покупках и видеть вклад каждого участника через баллы и награды.</p>
+      </aside>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 data-i18n-ru="Возможности" data-i18n-en="Features">Возможности</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="panel">
+          <h3 data-i18n-ru="Задачи" data-i18n-en="Tasks">Задачи</h3>
+          <p data-i18n-ru="Назначение ответственных, сроки, повторы, приоритеты и напоминания." data-i18n-en="Assignees, due dates, repeats, priorities, and reminders.">Назначение ответственных, сроки, повторы, приоритеты и напоминания.</p>
+        </article>
+        <article class="panel">
+          <h3 data-i18n-ru="Покупки" data-i18n-en="Shopping">Покупки</h3>
+          <p data-i18n-ru="Общий список покупок по магазинам и категориям." data-i18n-en="A shared shopping list organized by stores and categories.">Общий список покупок по магазинам и категориям.</p>
+        </article>
+        <article class="panel">
+          <h3 data-i18n-ru="Пространства" data-i18n-en="Spaces">Пространства</h3>
+          <p data-i18n-ru="Дом, квартира, комнаты и объекты группы в одном месте." data-i18n-en="Homes, apartments, rooms, and group objects in one place.">Дом, квартира, комнаты и объекты группы в одном месте.</p>
+        </article>
+        <article class="panel">
+          <h3 data-i18n-ru="Награды" data-i18n-en="Rewards">Награды</h3>
+          <p data-i18n-ru="Участники создают награды друг для друга и обменивают на них баллы за выполненные дела." data-i18n-en="Household members create rewards for each other and redeem points earned from completed chores.">Участники создают награды друг для друга и обменивают на них баллы за выполненные дела.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="screenshots" class="section">
+      <div class="section-head">
+        <h2 data-i18n-ru="Скриншоты" data-i18n-en="Screenshots">Скриншоты</h2>
+      </div>
+      <div class="gallery-grid active" data-lang-panel="ru">
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" alt="Скриншот сводки"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_3_2026-05-17_14-21-50.jpg" alt="Скриншот задач"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_5_2026-05-17_14-21-50.jpg" alt="Скриншот наград"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_4_2026-05-17_14-21-50.jpg" alt="Скриншот покупок"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_1_2026-05-17_14-21-50.jpg" alt="Скриншот профиля"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_6_2026-05-17_14-21-50.jpg" alt="Скриншот уведомлений"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_2_2026-05-17_14-21-50.jpg" alt="Скриншот настройки задачи"></figure>
+      </div>
+      <div class="gallery-grid" data-lang-panel="en">
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_13_2026-05-17_14-21-50.jpg" alt="Dashboard screen"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_9_2026-05-17_14-21-50.jpg" alt="Tasks screen"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_12_2026-05-17_14-21-50.jpg" alt="Rewards screen"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_10_2026-05-17_14-21-50.jpg" alt="Shopping screen"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_11_2026-05-17_14-21-50.jpg" alt="Task details screen"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_8_2026-05-17_14-21-50.jpg" alt="Profile screen"></figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>© 2026 Daniil Filippov</span>
+      <a href="mailto:moonlitmeadowstudio@gmail.com">moonlitmeadowstudio@gmail.com</a>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
