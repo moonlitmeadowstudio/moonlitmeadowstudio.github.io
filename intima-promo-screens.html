@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intima Tracker Promo Screens</title>
+  <style>
+    :root {
+      --bg: #09050a;
+      --panel: #161018;
+      --panel-2: #21111a;
+      --text: #fff7fb;
+      --muted: #d7bbc7;
+      --pink: #ff3f7d;
+      --pink-2: #ff6c96;
+      --line: rgba(255, 88, 142, 0.28);
+      --shadow: 0 60px 160px rgba(255, 45, 104, 0.26);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-width: 1320px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: #050305;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 28px;
+      background: rgba(5, 3, 5, 0.86);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .toolbar strong {
+      font-size: 18px;
+    }
+
+    .toolbar span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .language-title {
+      width: 1242px;
+      margin: 42px auto 18px;
+      color: var(--muted);
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .artboards {
+      display: grid;
+      gap: 42px;
+      justify-content: center;
+      padding-bottom: 80px;
+    }
+
+    .shot {
+      position: relative;
+      width: 1242px;
+      height: 2688px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(128, 20, 48, 0.98), transparent 34%),
+        radial-gradient(circle at 96% 8%, rgba(255, 55, 112, 0.26), transparent 34%),
+        radial-gradient(circle at 50% 98%, rgba(255, 64, 124, 0.18), transparent 34%),
+        linear-gradient(180deg, #1b0710 0%, #080407 42%, #030203 100%);
+      isolation: isolate;
+    }
+
+    .shot::before,
+    .shot::after {
+      content: "";
+      position: absolute;
+      inset: auto;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .shot::before {
+      width: 820px;
+      height: 820px;
+      left: -260px;
+      top: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 64, 124, 0.2), transparent 62%);
+      filter: blur(8px);
+    }
+
+    .shot::after {
+      width: 960px;
+      height: 960px;
+      right: -430px;
+      top: 760px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 64, 124, 0.16);
+      transform: rotate(-18deg);
+    }
+
+    .top {
+      position: relative;
+      z-index: 2;
+      padding: 92px 86px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin-bottom: 58px;
+    }
+
+    .brand img {
+      width: 104px;
+      height: 104px;
+      border-radius: 25px;
+      box-shadow: 0 28px 72px rgba(255, 64, 124, 0.32);
+    }
+
+    .brand-name {
+      display: grid;
+      gap: 4px;
+    }
+
+    .brand-name strong {
+      font-size: 34px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .brand-name span {
+      color: var(--pink-2);
+      font-size: 20px;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 980px;
+      margin: 0;
+      font-size: 82px;
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 860px;
+      margin: 30px 0 34px;
+      color: var(--muted);
+      font-size: 34px;
+      line-height: 1.24;
+      font-weight: 650;
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 56px;
+      padding: 0 20px;
+      border-radius: 999px;
+      color: #ffe8f0;
+      background: rgba(255, 64, 124, 0.18);
+      border: 1px solid rgba(255, 86, 140, 0.2);
+      font-size: 23px;
+      font-weight: 850;
+    }
+
+    .pill b {
+      font-size: 25px;
+    }
+
+    .phone-wrap {
+      position: absolute;
+      left: 50%;
+      bottom: 70px;
+      width: 840px;
+      height: 1780px;
+      transform: translateX(-50%);
+      border-radius: 112px;
+      padding: 18px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.025) 20%, rgba(255, 64, 124, 0.22) 100%),
+        #0d080d;
+      box-shadow:
+        0 62px 160px rgba(0, 0, 0, 0.68),
+        0 0 0 1px rgba(255, 89, 142, 0.22),
+        0 0 80px rgba(255, 55, 112, 0.18);
+    }
+
+    .phone {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 92px;
+      background: #050305;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      z-index: 2;
+      width: 194px;
+      height: 54px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 76% 50%, rgba(38, 38, 42, 0.96) 0 10px, transparent 11px),
+        #050305;
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+        0 8px 26px rgba(0, 0, 0, 0.34);
+    }
+
+    .phone img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .glow-card {
+      position: absolute;
+      right: 74px;
+      top: 625px;
+      width: 190px;
+      height: 190px;
+      display: grid;
+      place-items: center;
+      border-radius: 48px;
+      color: #fff;
+      font-size: 76px;
+      background: linear-gradient(135deg, rgba(255, 64, 124, 0.94), rgba(255, 91, 107, 0.92));
+      box-shadow: var(--shadow);
+    }
+
+    @media screen {
+      .shot {
+        box-shadow: 0 32px 90px rgba(0, 0, 0, 0.45);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <strong>Intima Tracker promo screenshots</strong>
+    <span>Each artboard is exactly 1242 × 2688 px. Screenshot/export one artboard at a time.</span>
+  </div>
+
+  <div class="language-title">Russian</div>
+  <main class="artboards" aria-label="Russian promo screenshots">
+    <section class="shot">
+      <div class="top">
+        <div class="brand">
+          <img src="assets/intima/logo.png" alt="Intima Tracker icon">
+          <div class="brand-name"><strong>Intima Tracker</strong><span>Private space</span></div>
+        </div>
+        <h1>Видьте близость в цифрах</h1>
+        <p class="lead">События, оценки, серия и последняя запись — всё важное на одном экране.</p>
+        <div class="pills"><span class="pill"><b>❤</b> Балл близости</span><span class="pill"><b>✦</b> Динамика</span><span class="pill"><b>▣</b> Статистика</span></div>
+      </div>
+      <div class="glow-card">❤</div>
+      <div class="phone-wrap"><div class="phone"><img src="assets/intima/promo-screens/ru/photo_1_2026-06-03_13-27-04.jpg" alt=""></div></div>
+    </section>
+
+    <section class="shot">
+      <div class="top">
+        <div class="brand">
+          <img src="assets/intima/logo.png" alt="Intima Tracker icon">
+          <div class="brand-name"><strong>Intima Tracker</strong><span>Patterns</span></div>
+        </div>
+        <h1>Понимайте привычки пары</h1>
+        <p class="lead">Смотрите, что часто сопровождает близость и в какое время всё проходит лучше.</p>
+        <div class="pills"><span class="pill"><b>↗</b> Связи</span><span class="pill"><b>◷</b> Время суток</span><span class="pill"><b>▦</b> Тепловая карта</span></div>
+      </div>
+      <div class="glow-card">◷</div>
+      <div class="phone-wrap"><div class="phone"><img src="assets/intima/promo-screens/ru/photo_2_2026-06-03_13-27-04.jpg" alt=""></div></div>
+    </section>
+
+    <section class="shot">
+      <div class="top">
+        <div class="brand">
+          <img src="assets/intima/logo.png" alt="Intima Tracker icon">
+          <div class="brand-name"><strong>Intima Tracker</strong><span>Desires</span></div>
+        </div>
+        <h1>Желания без неловкости</h1>
+        <p class="lead">Сохраняйте идеи, отмечайте интерес и делитесь тем, что хочется попробовать.</p>
+        <div class="pills"><span class="pill"><b>♥</b> Желания</span><span class="pill"><b>☰</b> Списки</span><span class="pill"><b>●</b> Для двоих</span></div>
+      </div>
+      <div class="glow-card">♥</div>
+      <div class="phone-wrap"><div class="phone"><img src="assets/intima/promo-screens/ru/photo_3_2026-06-03_13-27-04.jpg" alt=""></div></div>
+    </section>
+
+    <section class="shot">
+      <div class="top">
+        <div class="brand">
+          <img src="assets/intima/logo.png" alt="Intima Tracker icon">
+          <div class="brand-name"><strong>Intima Tracker</strong><span>Fast logging</span></div>
+        </div>
+        <h1>Запись за пару касаний</h1>
+        <p class="lead">Выберите тип события, добавьте детали и сохраните историю без лишних шагов.</p>
+        <div class="pills"><span class="pill"><b>＋</b> Быстро</span><span class="pill"><b>✎</b> Детали</span><span class="pill"><b>⚑</b> Типы событий</span></div>
+      </div>
+      <div class="glow-card">＋</div>
+      <div class="phone-wrap"><div class="phone"><img src="assets/intima/promo-screens/ru/photo_4_2026-06-03_13-27-04.jpg" alt=""></div></div>
+    </section>
+
+    <section class="shot">
+      <div class="top">
+        <div class="brand">
+          <img src="assets/intima/logo.png" alt="Intima Tracker icon">
+          <div class="brand-name"><strong>Intima Tracker</strong><span>Dynamics</span></div>
+        </div>
+        <h1>Следите за динамикой</h1>
+        <p class="lead">Активные дни, оценка и настроение помогают увидеть изменения в отношениях.</p>
+        <div class="pills"><span class="pill"><b>▰</b> Активные дни</span><span class="pill"><b>☆</b> Оценка</span><span class="pill"><b>↘</b> Тренды</span></div>
+      </div>
+      <div class="glow-card">☆</div>
+      <div class="phone-wrap"><div class="phone"><img src="assets/intima/promo-screens/ru/photo_5_2026-06-03_13-27-04.jpg" alt=""></div></div>
+    </section>
+
+    <section class="shot">
+      <div class="top">
+        <div class="brand">
+          <img src="assets/intima/logo.png" alt="Intima Tracker icon">
+          <div class="brand-name"><strong>Intima Tracker</strong><span>Insights</span></div>
+        </div>
+        <h1>Больше ясности в статистике</h1>
+        <p class="lead">Типы активности, длительность и настроение собираются в понятные отчёты.</p>
+        <div class="pills"><span class="pill"><b>◉</b> Распределение</span><span class="pill"><b>⌁</b> Настроение</span><span class="pill"><b>⌚</b> Длительность</span></div>
+      </div>
+      <div class="glow-card">◉</div>
+      <div class="phone-wrap"><div class="phone"><img src="assets/intima/promo-screens/ru/photo_6_2026-06-03_13-27-04.jpg" alt=""></div></div>
+    </section>
+  </main>
+
+  <div class="language-title">English</div>
+  <main class="artboards" aria-label="English promo screenshots">
+    <section class="shot">
+      <div class="top">
+        <div class="brand">
+          <img src="assets/intima/logo.png" alt="Intima Tracker icon">
+          <div class="brand-name"><strong>Intima Tracker</strong><span>Private space</span></div>
+        </div>
+        <h1>Track closeness beautifully</h1>
+        <p class="lead">Events, ratings, streaks, and your latest entry stay visible in one private place.</p>
+        <div class="pills"><span class="pill"><b>❤</b> Closeness score</span><span class="pill"><b>✦</b> Progress</span><span class="pill"><b>▣</b> Statistics</span></div>
+      </div>
+      <div class="glow-card">❤</div>
+      <div class="phone-wrap"><div class="phone"><img src="assets/intima/promo-screens/en/photo_1_2026-06-03_10-25-38.jpg" alt=""></div></div>
+    </section>
+
+    <section class="shot">
+      <div class="top">
+        <div class="brand">
+          <img src="assets/intima/logo.png" alt="Intima Tracker icon">
+          <div class="brand-name"><strong>Intima Tracker</strong><span>Fast logging</span></div>
+        </div>
+        <h1>Log moments in seconds</h1>
+        <p class="lead">Choose event types, add details, and keep your relationship history organized.</p>
+        <div class="pills"><span class="pill"><b>＋</b> Quick add</span><span class="pill"><b>✎</b> Details</span><span class="pill"><b>⚑</b> Event types</span></div>
+      </div>
+      <div class="glow-card">＋</div>
+      <div class="phone-wrap"><div class="phone"><img src="assets/intima/promo-screens/en/photo_5_2026-06-03_10-25-38.jpg" alt=""></div></div>
+    </section>
+
+    <section class="shot">
+      <div class="top">
+        <div class="brand">
+          <img src="assets/intima/logo.png" alt="Intima Tracker icon">
+          <div class="brand-name"><strong>Intima Tracker</strong><span>Desires</span></div>
+        </div>
+        <h1>Save desires privately</h1>
+        <p class="lead">Keep ideas, rate interest, and share what you want to try with your partner.</p>
+        <div class="pills"><span class="pill"><b>♥</b> Desires</span><span class="pill"><b>☰</b> Lists</span><span class="pill"><b>●</b> Partner space</span></div>
+      </div>
+      <div class="glow-card">♥</div>
+      <div class="phone-wrap"><div class="phone"><img src="assets/intima/promo-screens/en/photo_6_2026-06-03_10-25-38.jpg" alt=""></div></div>
+    </section>
+
+    <section class="shot">
+      <div class="top">
+        <div class="brand">
+          <img src="assets/intima/logo.png" alt="Intima Tracker icon">
+          <div class="brand-name"><strong>Intima Tracker</strong><span>Patterns</span></div>
+        </div>
+        <h1>Understand your patterns</h1>
+        <p class="lead">See what often accompanies intimacy and which time of day works best.</p>
+        <div class="pills"><span class="pill"><b>↗</b> Pairings</span><span class="pill"><b>◷</b> Time of day</span><span class="pill"><b>▦</b> Heatmap</span></div>
+      </div>
+      <div class="glow-card">◷</div>
+      <div class="phone-wrap"><div class="phone"><img src="assets/intima/promo-screens/en/photo_2_2026-06-03_10-25-38.jpg" alt=""></div></div>
+    </section>
+
+    <section class="shot">
+      <div class="top">
+        <div class="brand">
+          <img src="assets/intima/logo.png" alt="Intima Tracker icon">
+          <div class="brand-name"><strong>Intima Tracker</strong><span>Insights</span></div>
+        </div>
+        <h1>Turn moments into insights</h1>
+        <p class="lead">Activity types, duration, and mood become clear private statistics.</p>
+        <div class="pills"><span class="pill"><b>◉</b> Distribution</span><span class="pill"><b>⌁</b> Mood</span><span class="pill"><b>⌚</b> Duration</span></div>
+      </div>
+      <div class="glow-card">◉</div>
+      <div class="phone-wrap"><div class="phone"><img src="assets/intima/promo-screens/en/photo_3_2026-06-03_10-25-38.jpg" alt=""></div></div>
+    </section>
+
+    <section class="shot">
+      <div class="top">
+        <div class="brand">
+          <img src="assets/intima/logo.png" alt="Intima Tracker icon">
+          <div class="brand-name"><strong>Intima Tracker</strong><span>Dynamics</span></div>
+        </div>
+        <h1>Watch the relationship rhythm</h1>
+        <p class="lead">Active days and rating dynamics reveal how your connection changes over time.</p>
+        <div class="pills"><span class="pill"><b>▰</b> Active days</span><span class="pill"><b>☆</b> Rating</span><span class="pill"><b>↘</b> Trends</span></div>
+      </div>
+      <div class="glow-card">☆</div>
+      <div class="phone-wrap"><div class="phone"><img src="assets/intima/promo-screens/en/photo_4_2026-06-03_10-25-38.jpg" alt=""></div></div>
+    </section>
+  </main>
+</body>
+</html>
