@@ -3,22 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daniil Filippov — App Developer</title>
-  <meta name="description" content="Developer portfolio by Daniil Filippov with iOS applications and contacts.">
+  <title>Moonlit Meadow Studio</title>
+  <meta name="description" content="Moonlit Meadow Studio app catalog with iOS applications, privacy policies, and support contacts.">
   <link rel="icon" href="assets/logo.png">
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem("developer-site-theme");
+        var isIntima = theme === "intima";
+        document.documentElement.classList.add(isIntima ? "theme-intima" : "theme-domik");
+        document.documentElement.style.backgroundColor = isIntima ? "#09050a" : "#fbfff4";
+        document.documentElement.style.colorScheme = isIntima ? "dark" : "light";
+      } catch (error) {
+        document.documentElement.classList.add("theme-domik");
+        document.documentElement.style.backgroundColor = "#fbfff4";
+        document.documentElement.style.colorScheme = "light";
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <nav class="nav" aria-label="Main navigation">
       <a class="brand" href="index.html">
-        <img src="assets/logo.png" alt="Developer logo">
-        <span>Daniil Filippov</span>
+        <img src="assets/logo.png" alt="Moonlit Meadow Studio logo">
+        <span>Moonlit Meadow Studio</span>
       </a>
       <div class="nav-actions">
         <div class="nav-links">
           <a class="active" href="index.html" data-i18n-ru="Главная" data-i18n-en="Home">Главная</a>
-          <a href="app.html" data-i18n-ru="Приложения" data-i18n-en="Apps">Приложения</a>
+          <a href="#apps" data-i18n-ru="Приложения" data-i18n-en="Apps">Приложения</a>
           <a href="privacy.html" data-i18n-ru="Политика" data-i18n-en="Privacy">Политика</a>
           <a href="contacts.html" data-i18n-ru="Контакты" data-i18n-en="Contacts">Контакты</a>
         </div>
@@ -34,43 +49,23 @@
     <section class="hero">
       <div>
         <p class="eyebrow" data-i18n-ru="iOS apps and product design" data-i18n-en="iOS apps and product design">iOS apps and product design</p>
-        <h1 data-i18n-ru="Приложения Daniil Filippov" data-i18n-en="Apps by Daniil Filippov">Приложения Daniil Filippov</h1>
-        <p data-i18n-ru="Здесь будут собраны приложения, которые я разрабатываю: с описанием, скриншотами, документами и контактами для поддержки." data-i18n-en="A home for the apps I build, with descriptions, screenshots, privacy documents, and support contacts.">Здесь будут собраны приложения, которые я разрабатываю: с описанием, скриншотами, документами и контактами для поддержки.</p>
+        <h1>Moonlit Meadow Studio</h1>
+        <p data-i18n-ru="Небольшая студия мобильных приложений: понятные iOS-продукты для дома, отношений и повседневных задач." data-i18n-en="A small mobile app studio building clear iOS products for home, relationships, and everyday routines.">Небольшая студия мобильных приложений: понятные iOS-продукты для дома, отношений и повседневных задач.</p>
         <div class="actions">
           <a class="button primary" href="#apps" data-i18n-ru="Смотреть приложения" data-i18n-en="View apps">Смотреть приложения</a>
           <a class="button" href="contacts.html" data-i18n-ru="Связаться" data-i18n-en="Contact">Связаться</a>
         </div>
       </div>
-
-      <aside class="developer-card">
-        <div class="developer-row">
-          <div class="developer-avatar" aria-hidden="true">DF</div>
-          <div>
-            <h2>Daniil Filippov</h2>
-            <p data-i18n-ru="Разработчик мобильных приложений. Фокус на понятных продуктах для повседневных задач." data-i18n-en="Mobile app developer focused on clear products for everyday routines.">Разработчик мобильных приложений. Фокус на понятных продуктах для повседневных задач.</p>
-          </div>
-        </div>
-        <div class="mini-stats">
-          <div class="mini-stat">
-            <strong>1</strong>
-            <span data-i18n-ru="опубликованное приложение" data-i18n-en="published app">опубликованное приложение</span>
-          </div>
-          <div class="mini-stat">
-            <strong>iOS</strong>
-            <span data-i18n-ru="основная платформа" data-i18n-en="main platform">основная платформа</span>
-          </div>
-        </div>
-      </aside>
     </section>
 
     <section id="apps" class="section">
       <div class="section-head">
         <h2 data-i18n-ru="Приложения" data-i18n-en="Apps">Приложения</h2>
-        <p data-i18n-ru="Каталог будет расширяться по мере выхода новых проектов. Сейчас доступен Domik Tracker." data-i18n-en="This catalog will grow as new projects are released. Domik Tracker is available now.">Каталог будет расширяться по мере выхода новых проектов. Сейчас доступен Domik Tracker.</p>
+        <p data-i18n-ru="Каталог будет расширяться по мере выхода новых проектов. Сейчас доступны Domik Tracker и Intima Tracker." data-i18n-en="This catalog will grow as new projects are released. Domik Tracker and Intima Tracker are available now.">Каталог будет расширяться по мере выхода новых проектов. Сейчас доступны Domik Tracker и Intima Tracker.</p>
       </div>
 
       <div class="apps-grid">
-        <article class="app-card">
+        <article class="app-card" data-theme-choice="domik" tabindex="0">
           <img src="assets/logo.png" alt="Domik Tracker app icon">
           <div>
             <p class="eyebrow">Domik Tracker</p>
@@ -83,7 +78,28 @@
               <span class="tag" data-i18n-ru="Награды" data-i18n-en="Rewards">Награды</span>
             </div>
           </div>
-          <a class="button primary" href="app.html" data-i18n-ru="Открыть" data-i18n-en="Open">Открыть</a>
+          <div class="app-card-actions">
+            <a class="button primary" href="app.html" data-theme-link="domik" data-i18n-ru="Открыть" data-i18n-en="Open">Открыть</a>
+            <a class="app-store-badge app-store-badge-small" href="https://apps.apple.com/us/app/domik-tracker-home-chores/id6769375316" target="_blank" rel="noopener" aria-label="Domik Tracker on the App Store">
+              <img src="assets/app-store-badge.png" alt="Download on the App Store">
+            </a>
+          </div>
+        </article>
+
+        <article class="app-card intima-card" data-theme-choice="intima" tabindex="0">
+          <img src="assets/intima/logo.png" alt="Intima Tracker app icon">
+          <div>
+            <p class="eyebrow">Intima Tracker</p>
+            <h3 data-i18n-ru="Приватный трекер отношений" data-i18n-en="Private relationship tracker">Приватный трекер отношений</h3>
+            <p data-i18n-ru="Близость, настроение, желания и личные заметки в одном защищенном пространстве." data-i18n-en="Closeness, mood, desires, and private notes in one protected space.">Близость, настроение, желания и личные заметки в одном защищенном пространстве.</p>
+            <div class="tag-row">
+              <span class="tag">iOS</span>
+              <span class="tag" data-i18n-ru="Приватно" data-i18n-en="Private">Приватно</span>
+              <span class="tag" data-i18n-ru="Статистика" data-i18n-en="Statistics">Статистика</span>
+              <span class="tag" data-i18n-ru="Желания" data-i18n-en="Desires">Желания</span>
+            </div>
+          </div>
+          <a class="button primary" href="intima-tracker.html" data-theme-link="intima" data-i18n-ru="Открыть" data-i18n-en="Open">Открыть</a>
         </article>
 
         <article class="soon-card">
@@ -95,26 +111,34 @@
 
     <section class="section">
       <div class="section-head">
-        <h2 data-i18n-ru="Domik Tracker" data-i18n-en="Domik Tracker">Domik Tracker</h2>
+        <h2 data-i18n-ru="Обзор приложений" data-i18n-en="App previews">Обзор приложений</h2>
       </div>
-      <div class="screens-strip active" data-lang-panel="ru" aria-label="Domik Tracker screenshots">
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" alt="Скриншот сводки Domik Tracker"></figure>
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_3_2026-05-17_14-21-50.jpg" alt="Скриншот задач Domik Tracker"></figure>
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_4_2026-05-17_14-21-50.jpg" alt="Скриншот покупок Domik Tracker"></figure>
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_5_2026-05-17_14-21-50.jpg" alt="Скриншот наград Domik Tracker"></figure>
+      <div class="screens-strip active" data-lang-panel="ru" aria-label="App screenshots">
+        <figure class="screenshot-frame" data-preview-app="domik"><img loading="lazy" src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" alt="Скриншот сводки Domik Tracker"></figure>
+        <figure class="screenshot-frame" data-preview-app="domik"><img loading="lazy" src="assets/screenshots/photo_3_2026-05-17_14-21-50.jpg" alt="Скриншот задач Domik Tracker"></figure>
+        <figure class="screenshot-frame" data-preview-app="domik"><img loading="lazy" src="assets/screenshots/photo_4_2026-05-17_14-21-50.jpg" alt="Скриншот покупок Domik Tracker"></figure>
+        <figure class="screenshot-frame" data-preview-app="domik"><img loading="lazy" src="assets/screenshots/photo_5_2026-05-17_14-21-50.jpg" alt="Скриншот наград Domik Tracker"></figure>
+        <figure class="screenshot-frame intima-preview-frame" data-preview-app="intima"><img loading="lazy" src="assets/intima/screenshots/photo_1_2026-06-03_10-25-38.jpg" alt="Скриншот главного экрана Intima Tracker"></figure>
+        <figure class="screenshot-frame intima-preview-frame" data-preview-app="intima"><img loading="lazy" src="assets/intima/screenshots/photo_4_2026-06-03_10-25-38.jpg" alt="Скриншот динамики рейтинга Intima Tracker"></figure>
+        <figure class="screenshot-frame intima-preview-frame" data-preview-app="intima"><img loading="lazy" src="assets/intima/screenshots/photo_6_2026-06-03_10-25-38.jpg" alt="Скриншот желаний Intima Tracker"></figure>
+        <figure class="screenshot-frame intima-preview-frame" data-preview-app="intima"><img loading="lazy" src="assets/intima/screenshots/photo_5_2026-06-03_10-25-38.jpg" alt="Скриншот добавления события Intima Tracker"></figure>
       </div>
-      <div class="screens-strip" data-lang-panel="en" aria-label="Domik Tracker screenshots">
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_13_2026-05-17_14-21-50.jpg" alt="Domik Tracker dashboard screenshot"></figure>
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_9_2026-05-17_14-21-50.jpg" alt="Domik Tracker tasks screenshot"></figure>
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_10_2026-05-17_14-21-50.jpg" alt="Domik Tracker shopping screenshot"></figure>
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_12_2026-05-17_14-21-50.jpg" alt="Domik Tracker rewards screenshot"></figure>
+      <div class="screens-strip" data-lang-panel="en" aria-label="App screenshots">
+        <figure class="screenshot-frame" data-preview-app="domik"><img loading="lazy" src="assets/screenshots/photo_13_2026-05-17_14-21-50.jpg" alt="Domik Tracker dashboard screenshot"></figure>
+        <figure class="screenshot-frame" data-preview-app="domik"><img loading="lazy" src="assets/screenshots/photo_9_2026-05-17_14-21-50.jpg" alt="Domik Tracker tasks screenshot"></figure>
+        <figure class="screenshot-frame" data-preview-app="domik"><img loading="lazy" src="assets/screenshots/photo_10_2026-05-17_14-21-50.jpg" alt="Domik Tracker shopping screenshot"></figure>
+        <figure class="screenshot-frame" data-preview-app="domik"><img loading="lazy" src="assets/screenshots/photo_12_2026-05-17_14-21-50.jpg" alt="Domik Tracker rewards screenshot"></figure>
+        <figure class="screenshot-frame intima-preview-frame" data-preview-app="intima"><img loading="lazy" src="assets/intima/screenshots/photo_1_2026-06-03_10-25-38.jpg" alt="Intima Tracker home screenshot"></figure>
+        <figure class="screenshot-frame intima-preview-frame" data-preview-app="intima"><img loading="lazy" src="assets/intima/screenshots/photo_4_2026-06-03_10-25-38.jpg" alt="Intima Tracker rating dynamics screenshot"></figure>
+        <figure class="screenshot-frame intima-preview-frame" data-preview-app="intima"><img loading="lazy" src="assets/intima/screenshots/photo_6_2026-06-03_10-25-38.jpg" alt="Intima Tracker desires screenshot"></figure>
+        <figure class="screenshot-frame intima-preview-frame" data-preview-app="intima"><img loading="lazy" src="assets/intima/screenshots/photo_5_2026-06-03_10-25-38.jpg" alt="Intima Tracker add event screenshot"></figure>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <span>© 2026 Daniil Filippov</span>
+      <span>© 2026 Moonlit Meadow Studio</span>
       <a href="mailto:moonlitmeadowstudio@gmail.com">moonlitmeadowstudio@gmail.com</a>
     </div>
   </footer>

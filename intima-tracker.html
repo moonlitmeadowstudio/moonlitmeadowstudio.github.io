@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intima Tracker — Moonlit Meadow Studio</title>
+  <meta name="description" content="Intima Tracker app by Moonlit Meadow Studio.">
+  <link rel="icon" href="assets/intima/logo.png">
+  <script>
+    (function () {
+      document.documentElement.classList.add("theme-intima");
+      document.documentElement.style.backgroundColor = "#09050a";
+      document.documentElement.style.colorScheme = "dark";
+      try {
+        localStorage.setItem("developer-site-theme", "intima");
+      } catch (error) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-intima" data-page-app="intima">
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="index.html">
+        <img src="assets/intima/logo.png" alt="Intima Tracker app icon">
+        <span>Moonlit Meadow Studio</span>
+      </a>
+      <div class="nav-actions">
+        <div class="nav-links">
+          <a href="index.html" data-i18n-ru="Главная" data-i18n-en="Home">Главная</a>
+          <a class="active" href="index.html#apps" data-i18n-ru="Приложения" data-i18n-en="Apps">Приложения</a>
+          <a href="privacy.html" data-i18n-ru="Политика" data-i18n-en="Privacy">Политика</a>
+          <a href="contacts.html" data-i18n-ru="Контакты" data-i18n-en="Contacts">Контакты</a>
+        </div>
+        <div class="lang-switch" aria-label="Language switcher">
+          <button type="button" data-lang-button="ru">RU</button>
+          <button type="button" data-lang-button="en">EN</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="app-hero">
+      <div>
+        <p class="eyebrow" data-i18n-ru="Приложение" data-i18n-en="Application">Приложение</p>
+        <h1>Intima Tracker</h1>
+        <p data-i18n-ru="Приватное приложение для отслеживания близости, настроения, желаний и личных заметок в отношениях." data-i18n-en="A private app for tracking intimacy, mood, desires, and personal notes in relationships.">Приватное приложение для отслеживания близости, настроения, желаний и личных заметок в отношениях.</p>
+        <div class="actions">
+          <a class="button primary" href="#screenshots" data-i18n-ru="Скриншоты" data-i18n-en="Screenshots">Скриншоты</a>
+          <a class="button" href="privacy.html" data-i18n-ru="Политика конфиденциальности" data-i18n-en="Privacy policy">Политика конфиденциальности</a>
+        </div>
+      </div>
+
+      <aside class="app-hero-card">
+        <img src="assets/intima/logo.png" alt="Intima Tracker app icon">
+        <h2 data-i18n-ru="Личное пространство для двоих" data-i18n-en="A private space for two">Личное пространство для двоих</h2>
+        <p data-i18n-ru="Фиксируйте события близости, отслеживайте динамику в календаре и статистике, сохраняйте желания и заметки, а при необходимости открывайте совместный доступ партнеру через защищенное пространство." data-i18n-en="Log intimate moments, follow patterns in the calendar and statistics, save desires and notes, and share a protected space with your partner when you choose.">Фиксируйте события близости, отслеживайте динамику в календаре и статистике, сохраняйте желания и заметки, а при необходимости открывайте совместный доступ партнеру через защищенное пространство.</p>
+      </aside>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 data-i18n-ru="Возможности" data-i18n-en="Features">Возможности</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="panel">
+          <h3 data-i18n-ru="События близости" data-i18n-en="Intimacy events">События близости</h3>
+          <p data-i18n-ru="Отмечайте тип активности, длительность, настроение, рейтинг и дополнительные детали." data-i18n-en="Track activity type, duration, mood, rating, and additional details.">Отмечайте тип активности, длительность, настроение, рейтинг и дополнительные детали.</p>
+        </article>
+        <article class="panel">
+          <h3 data-i18n-ru="Календарь и статистика" data-i18n-en="Calendar and statistics">Календарь и статистика</h3>
+          <p data-i18n-ru="Видите частоту, длительность, активные дни, типы активности и динамику отношений." data-i18n-en="See frequency, duration, active days, activity types, and relationship dynamics.">Видите частоту, длительность, активные дни, типы активности и динамику отношений.</p>
+        </article>
+        <article class="panel">
+          <h3 data-i18n-ru="Желания и заметки" data-i18n-en="Desires and notes">Желания и заметки</h3>
+          <p data-i18n-ru="Сохраняйте идеи, желания и личные заметки в одном приватном месте." data-i18n-en="Keep ideas, desires, and personal notes in one private place.">Сохраняйте идеи, желания и личные заметки в одном приватном месте.</p>
+        </article>
+        <article class="panel">
+          <h3 data-i18n-ru="Приватность" data-i18n-en="Privacy">Приватность</h3>
+          <p data-i18n-ru="Поддерживаются резервное копирование, экспорт и совместный доступ с партнером через защищенное пространство." data-i18n-en="Backup, export, and protected partner sharing are supported.">Поддерживаются резервное копирование, экспорт и совместный доступ с партнером через защищенное пространство.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="screenshots" class="section">
+      <div class="section-head">
+        <h2 data-i18n-ru="Скриншоты" data-i18n-en="Screenshots">Скриншоты</h2>
+      </div>
+      <div class="gallery-grid active" data-lang-panel="ru">
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/intima/screenshots/photo_1_2026-06-03_10-25-38.jpg" alt="Intima Tracker home screen"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/intima/screenshots/photo_5_2026-06-03_10-25-38.jpg" alt="Intima Tracker add event screen"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/intima/screenshots/photo_6_2026-06-03_10-25-38.jpg" alt="Intima Tracker desires screen"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/intima/screenshots/photo_2_2026-06-03_10-25-38.jpg" alt="Intima Tracker statistics screen"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/intima/screenshots/photo_3_2026-06-03_10-25-38.jpg" alt="Intima Tracker type distribution screen"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/intima/screenshots/photo_4_2026-06-03_10-25-38.jpg" alt="Intima Tracker rating dynamics screen"></figure>
+      </div>
+      <div class="gallery-grid" data-lang-panel="en">
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/intima/screenshots/photo_1_2026-06-03_10-25-38.jpg" alt="Intima Tracker home screen"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/intima/screenshots/photo_5_2026-06-03_10-25-38.jpg" alt="Intima Tracker add event screen"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/intima/screenshots/photo_6_2026-06-03_10-25-38.jpg" alt="Intima Tracker desires screen"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/intima/screenshots/photo_2_2026-06-03_10-25-38.jpg" alt="Intima Tracker statistics screen"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/intima/screenshots/photo_3_2026-06-03_10-25-38.jpg" alt="Intima Tracker type distribution screen"></figure>
+        <figure class="screenshot-frame"><img loading="lazy" src="assets/intima/screenshots/photo_4_2026-06-03_10-25-38.jpg" alt="Intima Tracker rating dynamics screen"></figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>© 2026 Moonlit Meadow Studio</span>
+      <a href="mailto:moonlitmeadowstudio@gmail.com">moonlitmeadowstudio@gmail.com</a>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

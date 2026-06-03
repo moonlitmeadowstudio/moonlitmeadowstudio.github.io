@@ -3,22 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — Domik Tracker</title>
-  <meta name="description" content="Privacy Policy for Domik Tracker.">
+  <title>Privacy Policy — Moonlit Meadow Studio</title>
+  <meta name="description" content="Privacy Policy for Moonlit Meadow Studio apps: Domik Tracker and Intima Tracker.">
   <link rel="icon" href="assets/logo.png">
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem("developer-site-theme");
+        var isIntima = theme === "intima";
+        document.documentElement.classList.add(isIntima ? "theme-intima" : "theme-domik");
+        document.documentElement.style.backgroundColor = isIntima ? "#09050a" : "#fbfff4";
+        document.documentElement.style.colorScheme = isIntima ? "dark" : "light";
+      } catch (error) {
+        document.documentElement.classList.add("theme-domik");
+        document.documentElement.style.backgroundColor = "#fbfff4";
+        document.documentElement.style.colorScheme = "light";
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <nav class="nav" aria-label="Main navigation">
       <a class="brand" href="index.html">
-        <img src="assets/logo.png" alt="Developer logo">
-        <span>Daniil Filippov</span>
+        <img src="assets/logo.png" alt="Studio logo">
+        <span>Moonlit Meadow Studio</span>
       </a>
       <div class="nav-actions">
         <div class="nav-links">
           <a href="index.html" data-i18n-ru="Главная" data-i18n-en="Home">Главная</a>
-          <a href="app.html" data-i18n-ru="Приложения" data-i18n-en="Apps">Приложения</a>
+          <a href="index.html#apps" data-i18n-ru="Приложения" data-i18n-en="Apps">Приложения</a>
           <a class="active" href="privacy.html" data-i18n-ru="Политика" data-i18n-en="Privacy">Политика</a>
           <a href="contacts.html" data-i18n-ru="Контакты" data-i18n-en="Contacts">Контакты</a>
         </div>
@@ -37,162 +52,126 @@
 
     <section class="policy-shell">
       <div class="policy-content" data-lang-panel="en">
-        <h1>Privacy Policy — Domik Tracker</h1>
-
+        <h1>Privacy Policy — Moonlit Meadow Studio</h1>
+        <p><strong>Apps:</strong> Domik Tracker and Intima Tracker</p>
         <p><strong>Effective date:</strong> May 26, 2026</p>
 
-        <p>This Privacy Policy describes how Domik Tracker ("we", "app") collects, uses, and shares information when you use our mobile application.</p>
+        <p>This Privacy Policy describes how Moonlit Meadow Studio ("we", "app", "apps") collects, uses, and shares information when you use our mobile applications Domik Tracker and Intima Tracker.</p>
 
         <h2>1. Information We Collect</h2>
-
-        <p><strong>Account data:</strong> name and email address (or anonymized relay email) provided by Apple via Sign in with Apple, processed through Firebase Authentication. We do not have access to your Apple ID password.</p>
-
-        <p><strong>App content:</strong> tasks, shopping lists, household data, family member data, and reward records you create. This data is stored in Firebase Firestore and synced across your household members.</p>
-
-        <p><strong>Device identifiers:</strong> advertising identifier (IDFA), if you grant tracking permission via App Tracking Transparency (ATT). This may be used by advertising and analytics partners for advertising attribution, measurement, and personalization. You may deny this permission; the app remains fully usable without it.</p>
-
-        <p><strong>Notification token:</strong> device push token used to deliver task reminders and household notifications.</p>
-
-        <p><strong>Analytics and diagnostics data:</strong> app launches, session information, app usage events, device information, operating system version, app version, crash reports, and performance diagnostics. This data may be processed through AppMetrica to help us understand app usage and improve stability.</p>
+        <p><strong>Account data:</strong><br>Name and email address, or anonymized relay email, provided by Apple via Sign in with Apple and processed through Firebase Authentication. We do not have access to your Apple ID password.</p>
+        <p><strong>Domik Tracker app content:</strong><br>Tasks, shopping lists, household data, family member data, reward records, and other information you create inside the app. This data may be stored in Firebase Firestore and synced across your household members.</p>
+        <p><strong>Intima Tracker app content:</strong><br>Intimacy records, event types, duration, mood, desires, private notes, statistics data, privacy settings, and partner space data that you create inside the app. This data may be stored locally on your device and, when sync, backup, or partner sharing features are used, may be processed through Firebase.</p>
+        <p><strong>Device identifiers:</strong><br>Advertising identifier (IDFA), if you grant tracking permission via App Tracking Transparency (ATT). This may be used by advertising and analytics partners for advertising attribution, measurement, and personalization. You may deny this permission; the apps remain fully usable without it.</p>
+        <p><strong>Notification token:</strong><br>Domik Tracker may use a device push token to deliver task reminders and household notifications, if this feature is enabled.<br>Intima Tracker does not use push notifications if this feature is not available in the app.</p>
+        <p><strong>Analytics and diagnostics data:</strong><br>App launches, session information, app usage events, device information, operating system version, app version, crash reports, and performance diagnostics. This data may be processed through AppMetrica to help us understand app usage and improve stability.</p>
 
         <h2>2. How We Use Your Information</h2>
-
+        <p>We use your information:</p>
         <ul>
-          <li>To authenticate your account and sync app data across household members.</li>
-          <li>To store and display tasks, shopping lists, household information, and rewards.</li>
-          <li>To send task reminders and household notifications you configure.</li>
+          <li>To authenticate your account and sync app data.</li>
+          <li>To store and display the data you create inside the apps.</li>
+          <li>To provide partner or household sharing features, if enabled.</li>
+          <li>To provide backup and restore functionality, if used.</li>
+          <li>To send notifications in Domik Tracker, if configured by the user.</li>
           <li>To display advertisements via Yandex Mobile Ads SDK. If ATT permission is granted, ads may be personalized.</li>
-          <li>To analyze app usage, measure performance, detect crashes, and improve the app through AppMetrica.</li>
+          <li>To analyze app usage, measure performance, detect crashes, and improve the apps through AppMetrica.</li>
         </ul>
 
         <h2>3. Third-Party Services</h2>
-
-        <p><strong>Apple Sign in with Apple:</strong> authentication. Apple may provide a private relay email instead of your real email.<br>
-        Apple Privacy Policy: <a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a></p>
-
-        <p><strong>Firebase (Google):</strong> authentication and cloud data storage.<br>
-        Firebase Privacy Policy: <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></p>
-
-        <p><strong>AppMetrica:</strong> analytics, diagnostics, crash reporting, attribution, and app performance measurement.<br>
-        AppMetrica Privacy Information: <a href="https://appmetrica.yandex.com/docs/en/data-security/app-privacy-apple">https://appmetrica.yandex.com/docs/en/data-security/app-privacy-apple</a><br>
-        Yandex Privacy Policy: <a href="https://yandex.com/legal/confidential/">https://yandex.com/legal/confidential/</a></p>
-
-        <p><strong>Yandex Mobile Ads:</strong> in-app advertising. May process device identifiers and ad interaction data for ad delivery, measurement, and personalization where permitted.<br>
-        Yandex Privacy Policy: <a href="https://yandex.com/legal/confidential/">https://yandex.com/legal/confidential/</a></p>
+        <p><strong>Apple Sign in with Apple:</strong><br>Used for authentication. Apple may provide a private relay email instead of your real email.<br>Apple Privacy Policy: <a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a></p>
+        <p><strong>Firebase (Google):</strong><br>Used for authentication, cloud storage, synchronization, backup, and sharing features where applicable.<br>Firebase Privacy Policy: <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></p>
+        <p><strong>AppMetrica:</strong><br>Used for analytics, diagnostics, crash reporting, attribution, and app performance measurement.<br>AppMetrica Privacy Information: <a href="https://appmetrica.yandex.com/docs/en/data-security/app-privacy-apple">https://appmetrica.yandex.com/docs/en/data-security/app-privacy-apple</a><br>Yandex Privacy Policy: <a href="https://yandex.com/legal/confidential/">https://yandex.com/legal/confidential/</a></p>
+        <p><strong>Yandex Mobile Ads:</strong><br>Used for in-app advertising. May process device identifiers and ad interaction data for ad delivery, measurement, and personalization where permitted.<br>Yandex Privacy Policy: <a href="https://yandex.com/legal/confidential/">https://yandex.com/legal/confidential/</a></p>
 
         <h2>4. Data Sharing</h2>
-
-        <p>We do not sell your personal data. Data is shared only with the third-party services listed above, solely to provide app functionality, analytics, diagnostics, advertising, and measurement.</p>
+        <p>We do not sell your personal data. Data is shared only with the third-party services listed above, solely to provide app functionality, synchronization, backup, analytics, diagnostics, advertising, and measurement.</p>
 
         <h2>5. Data Retention</h2>
-
-        <p>Your app data is stored as long as your account is active or as needed to provide the app functionality. You may request deletion of your data by contacting us at the email below.</p>
+        <p>Your data is stored as long as your account is active or as needed to provide app functionality. You may request deletion of your data by contacting us at the email below.</p>
 
         <h2>6. Your Rights</h2>
-
         <ul>
           <li>You have the right to access, correct, or delete your personal data.</li>
           <li>California residents may request disclosure of data collected and opt out of its sale. We do not sell personal data.</li>
           <li>EU residents may exercise rights under GDPR by contacting us directly.</li>
-          <li>You can withdraw ATT permission at any time in iOS Settings → Privacy & Security → Tracking.</li>
+          <li>You can withdraw ATT permission at any time in iOS Settings -> Privacy & Security -> Tracking.</li>
           <li>You can stop further data collection by deleting the app.</li>
         </ul>
 
         <h2>7. Children's Privacy</h2>
-
-        <p>This app requires account creation via Sign in with Apple and is not directed to children under 13. We do not knowingly collect personal data from children under 13. If you believe a child under 13 has provided us data, please contact us and we will delete it promptly.</p>
+        <p>Our apps are not directed to children under 13. We do not knowingly collect personal data from children under 13. If you believe a child under 13 has provided us data, please contact us and we will delete it promptly.</p>
 
         <h2>8. Changes to This Policy</h2>
-
         <p>We may update this Privacy Policy from time to time. Changes will be reflected by updating the effective date at the top of this page.</p>
 
         <h2>9. Contact</h2>
-
-        <p>Questions about this Privacy Policy:<br>
-        <a href="mailto:moonlitmeadowstudio@gmail.com">moonlitmeadowstudio@gmail.com</a></p>
+        <p>Questions about this Privacy Policy:<br><a href="mailto:moonlitmeadowstudio@gmail.com">moonlitmeadowstudio@gmail.com</a></p>
       </div>
 
       <div class="policy-content" data-lang-panel="ru">
-        <h1>Политика конфиденциальности — Domik Tracker</h1>
-
+        <h1>Политика конфиденциальности — Moonlit Meadow Studio</h1>
+        <p><strong>Приложения:</strong> Domik Tracker и Intima Tracker</p>
         <p><strong>Дата вступления в силу:</strong> 26 мая 2026 г.</p>
 
-        <p>Настоящая Политика конфиденциальности описывает, как Domik Tracker ("мы", "приложение") собирает, использует и передает информацию при использовании нашего мобильного приложения.</p>
+        <p>Настоящая Политика конфиденциальности описывает, как Moonlit Meadow Studio ("мы", "приложение", "приложения") собирает, использует и передает информацию при использовании наших мобильных приложений Domik Tracker и Intima Tracker.</p>
 
         <h2>1. Какую информацию мы собираем</h2>
-
-        <p><strong>Данные аккаунта:</strong> имя и адрес электронной почты или скрытый relay email, предоставленный Apple через Sign in with Apple и обрабатываемый Firebase Authentication. Мы не имеем доступа к вашему паролю Apple ID.</p>
-
-        <p><strong>Данные приложения:</strong> задачи, списки покупок, данные дома, данные членов семьи и записи о наградах, которые вы создаете. Эти данные хранятся в Firebase Firestore и синхронизируются между участниками вашего дома.</p>
-
-        <p><strong>Идентификаторы устройства:</strong> рекламный идентификатор IDFA, если вы разрешили отслеживание через App Tracking Transparency (ATT). Он может использоваться рекламными и аналитическими партнерами для атрибуции рекламы, измерений и персонализации. Вы можете отказать в разрешении; приложение продолжит работать без ограничений.</p>
-
-        <p><strong>Токен уведомлений:</strong> push-токен устройства, используемый для отправки напоминаний о задачах и домашних уведомлений.</p>
-
-        <p><strong>Аналитические и диагностические данные:</strong> запуски приложения, информация о сессиях, события использования приложения, информация об устройстве, версия операционной системы, версия приложения, отчеты о сбоях и данные производительности. Эти данные могут обрабатываться через AppMetrica, чтобы мы могли понимать использование приложения и улучшать его стабильность.</p>
+        <p><strong>Данные аккаунта:</strong><br>Имя и адрес электронной почты или скрытый relay email, предоставленный Apple через Sign in with Apple и обрабатываемый Firebase Authentication. Мы не имеем доступа к вашему паролю Apple ID.</p>
+        <p><strong>Данные Domik Tracker:</strong><br>Задачи, списки покупок, данные дома, данные членов семьи, записи о наградах и другая информация, которую вы создаете внутри приложения. Эти данные могут храниться в Firebase Firestore и синхронизироваться между участниками вашего дома.</p>
+        <p><strong>Данные Intima Tracker:</strong><br>Записи о близости, типы событий, длительность, настроение, желания, личные заметки, данные статистики, настройки приватности и данные совместного пространства с партнером, которые вы создаете внутри приложения. Эти данные могут храниться локально на устройстве, а при использовании синхронизации, резервного копирования или совместного доступа — обрабатываться через Firebase.</p>
+        <p><strong>Идентификаторы устройства:</strong><br>Рекламный идентификатор IDFA, если вы разрешили отслеживание через App Tracking Transparency (ATT). Он может использоваться рекламными и аналитическими партнерами для атрибуции рекламы, измерений и персонализации. Вы можете отказать в разрешении; приложения продолжат работать без ограничений.</p>
+        <p><strong>Токен уведомлений:</strong><br>Domik Tracker может использовать push-токен устройства для отправки напоминаний о задачах и домашних уведомлений, если такая функция включена.<br>Intima Tracker не использует push-уведомления, если эта функция отсутствует в приложении.</p>
+        <p><strong>Аналитические и диагностические данные:</strong><br>Запуски приложения, информация о сессиях, события использования приложения, информация об устройстве, версия операционной системы, версия приложения, отчеты о сбоях и данные производительности. Эти данные могут обрабатываться через AppMetrica, чтобы мы могли понимать использование приложений и улучшать их стабильность.</p>
 
         <h2>2. Как мы используем вашу информацию</h2>
-
+        <p>Мы используем данные:</p>
         <ul>
-          <li>Для входа в аккаунт и синхронизации данных между участниками дома.</li>
-          <li>Для хранения и отображения задач, списков покупок, информации о доме и наград.</li>
-          <li>Для отправки напоминаний и уведомлений, которые вы настраиваете.</li>
+          <li>Для входа в аккаунт и синхронизации данных.</li>
+          <li>Для хранения и отображения данных, которые вы создаете в приложениях.</li>
+          <li>Для работы совместного доступа, если он включен.</li>
+          <li>Для резервного копирования и восстановления данных, если такая функция используется.</li>
+          <li>Для отправки уведомлений в Domik Tracker, если они настроены пользователем.</li>
           <li>Для показа рекламы через Yandex Mobile Ads SDK. Если разрешение ATT предоставлено, реклама может быть персонализированной.</li>
-          <li>Для анализа использования приложения, измерения производительности, выявления сбоев и улучшения приложения через AppMetrica.</li>
+          <li>Для анализа использования приложений, измерения производительности, выявления сбоев и улучшения приложений через AppMetrica.</li>
         </ul>
 
         <h2>3. Сторонние сервисы</h2>
-
-        <p><strong>Apple Sign in with Apple:</strong> аутентификация. Apple может предоставить скрытый relay email вместо вашего реального email.<br>
-        Политика конфиденциальности Apple: <a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a></p>
-
-        <p><strong>Firebase (Google):</strong> аутентификация и облачное хранение данных.<br>
-        Политика конфиденциальности Firebase: <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></p>
-
-        <p><strong>AppMetrica:</strong> аналитика, диагностика, отчеты о сбоях, атрибуция и измерение производительности приложения.<br>
-        Информация AppMetrica о конфиденциальности: <a href="https://appmetrica.yandex.com/docs/en/data-security/app-privacy-apple">https://appmetrica.yandex.com/docs/en/data-security/app-privacy-apple</a><br>
-        Политика конфиденциальности Яндекса: <a href="https://yandex.ru/legal/confidential/">https://yandex.ru/legal/confidential/</a></p>
-
-        <p><strong>Yandex Mobile Ads:</strong> реклама в приложении. Может обрабатывать идентификаторы устройства и данные взаимодействия с рекламой для показа рекламы, измерений и персонализации, если это разрешено.<br>
-        Политика конфиденциальности Яндекса: <a href="https://yandex.ru/legal/confidential/">https://yandex.ru/legal/confidential/</a></p>
+        <p><strong>Apple Sign in with Apple:</strong><br>Используется для аутентификации. Apple может предоставить скрытый relay email вместо вашего реального email.<br>Политика конфиденциальности Apple: <a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a></p>
+        <p><strong>Firebase (Google):</strong><br>Используется для аутентификации, облачного хранения, синхронизации, резервного копирования и совместного доступа, если соответствующие функции включены.<br>Политика конфиденциальности Firebase: <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></p>
+        <p><strong>AppMetrica:</strong><br>Используется для аналитики, диагностики, отчетов о сбоях, атрибуции и измерения производительности приложений.<br>Информация AppMetrica о конфиденциальности: <a href="https://appmetrica.yandex.com/docs/en/data-security/app-privacy-apple">https://appmetrica.yandex.com/docs/en/data-security/app-privacy-apple</a><br>Политика конфиденциальности Яндекса: <a href="https://yandex.ru/legal/confidential/">https://yandex.ru/legal/confidential/</a></p>
+        <p><strong>Yandex Mobile Ads:</strong><br>Используется для показа рекламы в приложениях. Может обрабатывать идентификаторы устройства и данные взаимодействия с рекламой для показа рекламы, измерений и персонализации, если это разрешено.<br>Политика конфиденциальности Яндекса: <a href="https://yandex.ru/legal/confidential/">https://yandex.ru/legal/confidential/</a></p>
 
         <h2>4. Передача данных</h2>
-
-        <p>Мы не продаем ваши персональные данные. Данные передаются только сторонним сервисам, перечисленным выше, исключительно для работы приложения, аналитики, диагностики, рекламы и измерений.</p>
+        <p>Мы не продаем ваши персональные данные. Данные передаются только сторонним сервисам, перечисленным выше, исключительно для работы приложений, синхронизации, резервного копирования, аналитики, диагностики, рекламы и измерений.</p>
 
         <h2>5. Хранение данных</h2>
-
-        <p>Ваши данные хранятся, пока ваш аккаунт активен или пока это необходимо для работы приложения. Вы можете запросить удаление данных, написав нам на email ниже.</p>
+        <p>Ваши данные хранятся, пока ваш аккаунт активен или пока это необходимо для работы приложений. Вы можете запросить удаление данных, написав нам на email ниже.</p>
 
         <h2>6. Ваши права</h2>
-
         <ul>
           <li>Вы имеете право запросить доступ, исправление или удаление ваших персональных данных.</li>
           <li>Жители Калифорнии могут запросить раскрытие информации о собранных данных и отказаться от их продажи. Мы не продаем персональные данные.</li>
           <li>Жители ЕС могут воспользоваться правами по GDPR, связавшись с нами напрямую.</li>
-          <li>Вы можете отозвать разрешение ATT в любое время: iOS Settings → Privacy & Security → Tracking.</li>
+          <li>Вы можете отозвать разрешение ATT в любое время: iOS Settings -> Privacy & Security -> Tracking.</li>
           <li>Вы можете прекратить дальнейший сбор данных, удалив приложение.</li>
         </ul>
 
         <h2>7. Конфиденциальность детей</h2>
-
-        <p>Приложение требует создания аккаунта через Sign in with Apple и не предназначено для детей младше 13 лет. Мы сознательно не собираем персональные данные детей младше 13 лет. Если вы считаете, что ребенок младше 13 лет предоставил нам данные, свяжитесь с нами, и мы удалим эти данные.</p>
+        <p>Наши приложения не предназначены для детей младше 13 лет. Мы сознательно не собираем персональные данные детей младше 13 лет. Если вы считаете, что ребенок младше 13 лет предоставил нам данные, свяжитесь с нами, и мы удалим такие данные.</p>
 
         <h2>8. Изменения политики</h2>
-
         <p>Мы можем время от времени обновлять настоящую Политику конфиденциальности. Изменения будут отражены обновлением даты вступления в силу в верхней части документа.</p>
 
         <h2>9. Контакты</h2>
-
-        <p>Вопросы по Политике конфиденциальности:<br>
-        <a href="mailto:moonlitmeadowstudio@gmail.com">moonlitmeadowstudio@gmail.com</a></p>
+        <p>Вопросы по Политике конфиденциальности:<br><a href="mailto:moonlitmeadowstudio@gmail.com">moonlitmeadowstudio@gmail.com</a></p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <span>© 2026 Daniil Filippov</span>
+      <span>© 2026 Moonlit Meadow Studio</span>
       <a href="mailto:moonlitmeadowstudio@gmail.com">moonlitmeadowstudio@gmail.com</a>
     </div>
   </footer>

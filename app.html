@@ -3,22 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Domik Tracker — Daniil Filippov</title>
-  <meta name="description" content="Domik Tracker app by Daniil Filippov.">
+  <title>Domik Tracker — Moonlit Meadow Studio</title>
+  <meta name="description" content="Domik Tracker app by Moonlit Meadow Studio.">
   <link rel="icon" href="assets/logo.png">
+  <script>
+    (function () {
+      document.documentElement.classList.add("theme-domik");
+      document.documentElement.style.backgroundColor = "#fbfff4";
+      document.documentElement.style.colorScheme = "light";
+      try {
+        localStorage.setItem("developer-site-theme", "domik");
+      } catch (error) {}
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-page-app="domik">
   <header class="site-header">
     <nav class="nav" aria-label="Main navigation">
       <a class="brand" href="index.html">
-        <img src="assets/logo.png" alt="Developer logo">
-        <span>Daniil Filippov</span>
+        <img src="assets/logo.png" alt="Domik Tracker app icon">
+        <span>Moonlit Meadow Studio</span>
       </a>
       <div class="nav-actions">
         <div class="nav-links">
           <a href="index.html" data-i18n-ru="Главная" data-i18n-en="Home">Главная</a>
-          <a class="active" href="app.html" data-i18n-ru="Приложения" data-i18n-en="Apps">Приложения</a>
+          <a class="active" href="index.html#apps" data-i18n-ru="Приложения" data-i18n-en="Apps">Приложения</a>
           <a href="privacy.html" data-i18n-ru="Политика" data-i18n-en="Privacy">Политика</a>
           <a href="contacts.html" data-i18n-ru="Контакты" data-i18n-en="Contacts">Контакты</a>
         </div>
@@ -37,6 +47,9 @@
         <h1>Domik Tracker</h1>
         <p data-i18n-ru="Помогает семье распределять домашние дела, вести покупки, управлять пространствами и мотивировать участников через баллы и награды." data-i18n-en="Helps a household manage chores, shopping, spaces, and motivation through points and rewards.">Помогает семье распределять домашние дела, вести покупки, управлять пространствами и мотивировать участников через баллы и награды.</p>
         <div class="actions">
+          <a class="app-store-badge" href="https://apps.apple.com/us/app/domik-tracker-home-chores/id6769375316" target="_blank" rel="noopener" aria-label="Domik Tracker on the App Store">
+            <img src="assets/app-store-badge.png" alt="Download on the App Store">
+          </a>
           <a class="button primary" href="#screenshots" data-i18n-ru="Скриншоты" data-i18n-en="Screenshots">Скриншоты</a>
           <a class="button" href="privacy.html" data-i18n-ru="Политика конфиденциальности" data-i18n-en="Privacy policy">Политика конфиденциальности</a>
         </div>
@@ -84,7 +97,6 @@
         <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_4_2026-05-17_14-21-50.jpg" alt="Скриншот покупок"></figure>
         <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_1_2026-05-17_14-21-50.jpg" alt="Скриншот профиля"></figure>
         <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_6_2026-05-17_14-21-50.jpg" alt="Скриншот уведомлений"></figure>
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_2_2026-05-17_14-21-50.jpg" alt="Скриншот настройки задачи"></figure>
       </div>
       <div class="gallery-grid" data-lang-panel="en">
         <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_13_2026-05-17_14-21-50.jpg" alt="Dashboard screen"></figure>
@@ -99,7 +111,7 @@
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <span>© 2026 Daniil Filippov</span>
+      <span>© 2026 Moonlit Meadow Studio</span>
       <a href="mailto:moonlitmeadowstudio@gmail.com">moonlitmeadowstudio@gmail.com</a>
     </div>
   </footer>

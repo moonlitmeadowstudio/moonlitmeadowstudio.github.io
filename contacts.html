@@ -3,22 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contacts — Daniil Filippov</title>
-  <meta name="description" content="Contact information for Daniil Filippov and app support.">
+  <title>Contacts — Moonlit Meadow Studio</title>
+  <meta name="description" content="Contact information for Moonlit Meadow Studio and app support.">
   <link rel="icon" href="assets/logo.png">
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem("developer-site-theme");
+        var isIntima = theme === "intima";
+        document.documentElement.classList.add(isIntima ? "theme-intima" : "theme-domik");
+        document.documentElement.style.backgroundColor = isIntima ? "#09050a" : "#fbfff4";
+        document.documentElement.style.colorScheme = isIntima ? "dark" : "light";
+      } catch (error) {
+        document.documentElement.classList.add("theme-domik");
+        document.documentElement.style.backgroundColor = "#fbfff4";
+        document.documentElement.style.colorScheme = "light";
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <nav class="nav" aria-label="Main navigation">
       <a class="brand" href="index.html">
-        <img src="assets/logo.png" alt="Developer logo">
-        <span>Daniil Filippov</span>
+        <img src="assets/logo.png" alt="Moonlit Meadow Studio logo">
+        <span>Moonlit Meadow Studio</span>
       </a>
       <div class="nav-actions">
         <div class="nav-links">
           <a href="index.html" data-i18n-ru="Главная" data-i18n-en="Home">Главная</a>
-          <a href="app.html" data-i18n-ru="Приложения" data-i18n-en="Apps">Приложения</a>
+          <a href="index.html#apps" data-i18n-ru="Приложения" data-i18n-en="Apps">Приложения</a>
           <a href="privacy.html" data-i18n-ru="Политика" data-i18n-en="Privacy">Политика</a>
           <a class="active" href="contacts.html" data-i18n-ru="Контакты" data-i18n-en="Contacts">Контакты</a>
         </div>
@@ -33,14 +48,14 @@
   <main class="page">
     <section class="page-title">
       <p class="eyebrow" data-i18n-ru="Контакты" data-i18n-en="Contacts">Контакты</p>
-      <h1 data-i18n-ru="Связаться с разработчиком" data-i18n-en="Contact the developer">Связаться с разработчиком</h1>
+      <h1 data-i18n-ru="Связаться со студией" data-i18n-en="Contact the studio">Связаться со студией</h1>
       <p data-i18n-ru="По вопросам можно написать на email." data-i18n-en="For questions, you can write by email.">По вопросам можно написать на email.</p>
     </section>
 
     <section class="section contact-grid">
       <article class="contact-card">
-        <h2 data-i18n-ru="Разработчик" data-i18n-en="Developer">Разработчик</h2>
-        <p>Daniil Filippov</p>
+        <h2 data-i18n-ru="Студия" data-i18n-en="Studio">Студия</h2>
+        <p>Moonlit Meadow Studio</p>
         <a class="button" href="index.html" data-i18n-ru="На главную" data-i18n-en="Home page">На главную</a>
       </article>
       <article class="contact-card">
@@ -53,7 +68,7 @@
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <span>© 2026 Daniil Filippov</span>
+      <span>© 2026 Moonlit Meadow Studio</span>
       <a href="mailto:moonlitmeadowstudio@gmail.com">moonlitmeadowstudio@gmail.com</a>
     </div>
   </footer>
