@@ -3,145 +3,853 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moonlit Meadow Studio</title>
-  <meta name="description" content="Moonlit Meadow Studio app catalog with iOS applications, privacy policies, and support contacts.">
-  <link rel="icon" href="assets/logo.png">
-  <script>
-    (function () {
-      try {
-        var theme = localStorage.getItem("developer-site-theme");
-        var isIntima = theme === "intima";
-        document.documentElement.classList.add(isIntima ? "theme-intima" : "theme-domik");
-        document.documentElement.style.backgroundColor = isIntima ? "#09050a" : "#fbfff4";
-        document.documentElement.style.colorScheme = isIntima ? "dark" : "light";
-      } catch (error) {
-        document.documentElement.classList.add("theme-domik");
-        document.documentElement.style.backgroundColor = "#fbfff4";
-        document.documentElement.style.colorScheme = "light";
-      }
-    })();
-  </script>
-  <link rel="stylesheet" href="styles.css">
+  <title>Moonlit Meadow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #07091c;
+      --surf: rgba(255,255,255,0.04);
+      --surf2: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.08);
+      --text: #eef0f8;
+      --muted: rgba(238,240,248,0.48);
+      --accent: #d4a83c;
+      --accent-dim: rgba(212,168,60,0.2);
+      --teal: #5db8e8;
+      --teal-dim: rgba(93,184,232,0.14);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── CANVAS STARS ── */
+    #stars {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── GRAIN OVERLAY ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: .35;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
+      background-size: 300px 300px;
+    }
+
+    .layer { position: relative; z-index: 2; }
+
+    /* ════════════════════════════
+       NAV
+    ════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 90;
+      height: 60px;
+      display: flex; align-items: center;
+      padding: 0 48px;
+      background: rgba(7,9,28,.65);
+      backdrop-filter: blur(24px) saturate(1.4);
+      border-bottom: 1px solid var(--border);
+      transition: background .3s;
+    }
+    nav.scrolled { background: rgba(7,9,28,.92); }
+
+    .nav-inner {
+      max-width: 1160px; width: 100%; margin: 0 auto;
+      display: flex; align-items: center; gap: 0;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--text);
+      flex-shrink: 0;
+    }
+    .nav-logo img {
+      width: 26px; height: 26px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+    }
+    .nav-logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700; font-size: 14px;
+      letter-spacing: -.02em;
+    }
+
+    .nav-links {
+      display: flex; gap: 28px;
+      margin-left: auto; margin-right: 28px;
+    }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 13.5px; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .lang-pill {
+      display: flex; gap: 2px;
+      background: var(--surf);
+      border: 1px solid var(--border);
+      border-radius: 8px; padding: 3px;
+    }
+    .lang-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .06em;
+      padding: 4px 9px; border-radius: 5px;
+      color: var(--muted); transition: all .2s;
+    }
+    .lang-btn.on { background: var(--accent); color: #fff; }
+
+    /* ════════════════════════════
+       HERO
+    ════════════════════════════ */
+    #hero {
+      min-height: 100vh;
+      padding: 60px 48px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .hero-left { padding: 60px 0; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 5px 14px 5px 8px;
+      background: var(--surf);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 12px; font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 8px var(--teal);
+      animation: blink 2.2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(32px, 3.4vw, 48px);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -.03em;
+      margin-bottom: 22px;
+    }
+    .grad {
+      background: linear-gradient(120deg, var(--accent) 0%, var(--teal) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 17px; line-height: 1.65;
+      color: var(--muted); max-width: 420px;
+      margin-bottom: 38px;
+    }
+
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 26px; border-radius: 12px;
+      font-size: 14.5px; font-weight: 500;
+      text-decoration: none; transition: all .2s;
+    }
+    .btn-fill {
+      background: var(--accent); color: #fff;
+      box-shadow: 0 4px 28px var(--accent-dim);
+    }
+    .btn-fill:hover {
+      background: #9d92f7;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 36px rgba(139,127,245,.38);
+    }
+    .btn-outline {
+      background: var(--surf); color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { background: var(--surf2); border-color: rgba(255,255,255,.16); }
+
+    /* ── HERO PHONES ── */
+    .hero-right {
+      display: flex; justify-content: center; align-items: center;
+      height: 580px; position: relative;
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      width: 360px; height: 360px; border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .phone-duo {
+      position: relative; width: 300px; height: 500px;
+    }
+    .ph {
+      position: absolute;
+      width: 186px; height: 402px;
+      border-radius: 30px;
+      border: 1.5px solid rgba(255,255,255,.13);
+      overflow: hidden;
+      background: #0b0b1c;
+      box-shadow:
+        0 2px 0 rgba(255,255,255,.06) inset,
+        0 40px 80px rgba(0,0,0,.7),
+        0 0 0 .5px rgba(0,0,0,.6);
+    }
+    .ph img { width: 100%; height: 100%; object-fit: cover; }
+    .ph-notch {
+      position: absolute; top: 8px; left: 50%;
+      transform: translateX(-50%);
+      width: 52px; height: 4px;
+      background: rgba(255,255,255,.18); border-radius: 2px;
+      z-index: 5;
+    }
+    .ph-a {
+      left: 0; top: 50px;
+      transform: rotate(-7deg);
+      z-index: 1;
+    }
+    .ph-b {
+      right: 0; top: 0;
+      transform: rotate(5deg);
+      z-index: 2;
+    }
+
+    /* ════════════════════════════
+       SHARED SECTION
+    ════════════════════════════ */
+    .sec { position: relative; z-index: 2; }
+    .sec-inner {
+      max-width: 1160px; margin: 0 auto;
+      padding: 110px 48px;
+    }
+    .sec-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .16em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px;
+    }
+    .sec-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(30px, 3.5vw, 50px);
+      font-weight: 800; letter-spacing: -.025em;
+      line-height: 1.1; margin-bottom: 14px;
+    }
+    .sec-sub {
+      font-size: 16.5px; line-height: 1.65;
+      color: var(--muted); max-width: 520px;
+    }
+
+    /* ════════════════════════════
+       APPS
+    ════════════════════════════ */
+    .apps-head { margin-bottom: 64px; }
+
+    .app-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px; align-items: center;
+      padding: 56px;
+      background: var(--surf);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      margin-bottom: 20px;
+      position: relative; overflow: hidden;
+    }
+    .app-card::before {
+      content: '';
+      position: absolute;
+      width: 380px; height: 380px; border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-dim), transparent 70%);
+      top: -140px; right: -140px;
+      pointer-events: none;
+    }
+    .app-card.flip::before {
+      background: radial-gradient(circle, var(--teal-dim), transparent 70%);
+      top: -140px; left: -140px; right: auto;
+    }
+    .app-card.flip .app-text { order: 2; }
+    .app-card.flip .app-phones { order: 1; }
+
+    .app-icon-row {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 20px;
+    }
+    .app-icon {
+      width: 54px; height: 54px; border-radius: 13px;
+      overflow: hidden; border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .app-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .app-platform { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .app-name-label { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; margin-top: 2px; }
+
+    .app-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(22px, 2.5vw, 32px);
+      font-weight: 800; letter-spacing: -.02em;
+      line-height: 1.18; margin-bottom: 14px;
+    }
+    .app-desc {
+      font-size: 15.5px; line-height: 1.7;
+      color: var(--muted); margin-bottom: 22px;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 30px; }
+    .tag {
+      padding: 4px 11px;
+      background: var(--surf2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 11.5px; font-weight: 500;
+      color: var(--muted);
+    }
+    .app-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .badge-img { height: 38px; opacity: .9; transition: opacity .2s; }
+    .badge-img:hover { opacity: 1; }
+    .btn-sm {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 9px 18px; border-radius: 10px;
+      font-size: 13px; font-weight: 500;
+      text-decoration: none;
+      background: var(--surf2); color: var(--text);
+      border: 1px solid var(--border); transition: all .2s;
+    }
+    .btn-sm:hover { border-color: rgba(255,255,255,.18); }
+
+    /* ── PHONE TRIO ── */
+    .app-phones {
+      position: relative; height: 390px;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .app-phones .ph {
+      position: absolute;
+      width: 152px; height: 329px;
+      border-radius: 24px;
+    }
+    .app-phones .ph:nth-child(1) { left: 0; transform: rotate(-6deg) translateY(12px); z-index: 1; }
+    .app-phones .ph:nth-child(2) { left: 50%; transform: translateX(-50%); z-index: 3; }
+    .app-phones .ph:nth-child(3) { right: 0; transform: rotate(6deg) translateY(12px); z-index: 1; }
+
+    /* ════════════════════════════
+       GAMES
+    ════════════════════════════ */
+    #games {
+      background: linear-gradient(180deg, transparent 0%, rgba(139,127,245,.035) 50%, transparent 100%);
+    }
+    .games-head { margin-bottom: 56px; }
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .game-card {
+      border-radius: 20px; overflow: hidden;
+      border: 1px solid var(--border);
+      aspect-ratio: 3/4;
+      position: relative;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      transition: transform .3s, border-color .3s;
+    }
+    .game-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.14); }
+
+    .gc-bg {
+      position: absolute; inset: 0;
+    }
+    .gc-grid {
+      position: absolute; inset: 0; opacity: .07;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.15) 0, rgba(255,255,255,.15) 1px, transparent 0, transparent 40px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.15) 0, rgba(255,255,255,.15) 1px, transparent 0, transparent 40px);
+    }
+    .gc-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 30%, rgba(255,255,255,.06), transparent 60%);
+    }
+    .soon-badge {
+      position: absolute; top: 20px; right: 20px;
+      padding: 4px 11px;
+      background: rgba(139,127,245,.18);
+      border: 1px solid rgba(139,127,245,.28);
+      border-radius: 999px;
+      font-size: 10.5px; font-weight: 600;
+      letter-spacing: .09em; text-transform: uppercase;
+      color: var(--accent);
+    }
+    .gc-body {
+      position: relative; z-index: 2;
+      padding: 22px;
+      background: linear-gradient(transparent, rgba(5,5,15,.92));
+    }
+    .gc-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px; font-weight: 700; margin-bottom: 5px;
+    }
+    .gc-sub { font-size: 12.5px; color: var(--muted); }
+
+    /* ════════════════════════════
+       ABOUT
+    ════════════════════════════ */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: start;
+      margin-top: 56px;
+    }
+    .about-p {
+      font-size: 17px; line-height: 1.78;
+      color: var(--muted); margin-bottom: 22px;
+    }
+    .values {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .val {
+      padding: 22px;
+      background: var(--surf);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: border-color .2s, background .2s;
+    }
+    .val:hover { background: var(--surf2); border-color: rgba(255,255,255,.13); }
+    .val-icon { font-size: 22px; margin-bottom: 10px; }
+    .val-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 7px; }
+    .val-desc { font-size: 12.5px; line-height: 1.6; color: var(--muted); }
+
+    /* ════════════════════════════
+       FOOTER
+    ════════════════════════════ */
+    footer {
+      position: relative; z-index: 2;
+      border-top: 1px solid var(--border);
+      padding: 44px 48px;
+    }
+    .foot-inner {
+      max-width: 1160px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 24px;
+    }
+    .foot-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--text);
+    }
+    .foot-logo img { width: 26px; height: 26px; border-radius: 7px; border: 1px solid var(--border); }
+    .foot-logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: -.02em; }
+    .foot-links { display: flex; gap: 24px; }
+    .foot-links a { color: var(--muted); text-decoration: none; font-size: 13.5px; transition: color .2s; }
+    .foot-links a:hover { color: var(--text); }
+    .foot-copy { font-size: 13px; color: var(--muted); }
+
+    /* ════════════════════════════
+       SCROLL REVEAL
+    ════════════════════════════ */
+    .rv {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+    .rv.d1 { transition-delay: .1s; }
+    .rv.d2 { transition-delay: .2s; }
+    .rv.d3 { transition-delay: .3s; }
+    .rv.show { opacity: 1; transform: none; }
+
+    /* ════════════════════════════
+       RESPONSIVE
+    ════════════════════════════ */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; padding: 80px 24px 0; gap: 40px; min-height: auto; }
+      .hero-right { height: 320px; }
+      .ph { width: 140px; height: 303px; }
+      .phone-duo { width: 220px; height: 370px; }
+      .ph-a { top: 40px; }
+      .sec-inner { padding: 80px 24px; }
+      .app-card { grid-template-columns: 1fr; padding: 36px 28px; gap: 40px; }
+      .app-card.flip .app-text { order: 1; }
+      .app-card.flip .app-phones { order: 2; }
+      .app-phones .ph { width: 120px; height: 260px; }
+      .app-phones { height: 310px; }
+      .games-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      footer { padding: 36px 24px; }
+      .foot-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav" aria-label="Main navigation">
-      <a class="brand" href="index.html">
-        <img src="assets/logo.png" alt="Moonlit Meadow Studio logo">
-        <span>Moonlit Meadow Studio</span>
+
+<canvas id="stars"></canvas>
+
+<div class="layer">
+
+  <!-- ══ NAV ══ -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="assets/logo.png" alt="MMS" style="width:32px;height:32px;border-radius:8px;object-fit:cover;">
+        <span class="nav-logo-text">Moonlit Meadow</span>
       </a>
-      <div class="nav-actions">
-        <div class="nav-links">
-          <a class="active" href="index.html" data-i18n-ru="Главная" data-i18n-en="Home">Главная</a>
-          <a href="#apps" data-i18n-ru="Приложения" data-i18n-en="Apps">Приложения</a>
-          <a href="privacy.html" data-i18n-ru="Политика" data-i18n-en="Privacy">Политика</a>
-          <a href="contacts.html" data-i18n-ru="Контакты" data-i18n-en="Contacts">Контакты</a>
+      <div class="nav-links">
+        <a href="#apps"   data-ru="Приложения" data-en="Apps">Приложения</a>
+        <a href="#games"  data-ru="Игры"        data-en="Games">Игры</a>
+        <a href="#about"  data-ru="О студии"    data-en="About">О студии</a>
+        <a href="#footer" data-ru="Контакт"     data-en="Contact">Контакт</a>
+      </div>
+      <div class="lang-pill">
+        <button class="lang-btn on" data-lang="ru">RU</button>
+        <button class="lang-btn"    data-lang="en">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section>
+    <div id="hero">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span data-ru="Приложения и игры" data-en="Apps &amp; Games">Приложения и игры</span>
         </div>
-        <div class="lang-switch" aria-label="Language switcher">
-          <button type="button" data-lang-button="ru">RU</button>
-          <button type="button" data-lang-button="en">EN</button>
+
+        <h1 class="hero-title">
+          <span style="white-space:nowrap">Moonlit <span class="grad">Meadow</span></span>
+        </h1>
+
+        <p class="hero-sub" data-ru="Небольшая indie-студия. Делаем приложения и игры — красивые, понятные, с душой." data-en="A small indie studio crafting apps and games — beautiful, intuitive, and made with care.">
+          Небольшая indie-студия. Делаем приложения и игры — красивые, понятные, с душой.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#apps" class="btn btn-fill" data-ru="Смотреть проекты" data-en="View projects">Смотреть проекты</a>
+          <a href="#footer" class="btn btn-outline" data-ru="Связаться" data-en="Contact us">Связаться</a>
         </div>
       </div>
-    </nav>
-  </header>
 
-  <main class="page">
-    <section class="hero">
-      <div>
-        <p class="eyebrow" data-i18n-ru="iOS apps and product design" data-i18n-en="iOS apps and product design">iOS apps and product design</p>
-        <h1>Moonlit Meadow Studio</h1>
-        <p data-i18n-ru="Небольшая студия мобильных приложений: понятные iOS-продукты для дома, отношений и повседневных задач." data-i18n-en="A small mobile app studio building clear iOS products for home, relationships, and everyday routines.">Небольшая студия мобильных приложений: понятные iOS-продукты для дома, отношений и повседневных задач.</p>
-        <div class="actions">
-          <a class="button primary" href="#apps" data-i18n-ru="Смотреть приложения" data-i18n-en="View apps">Смотреть приложения</a>
-          <a class="button" href="contacts.html" data-i18n-ru="Связаться" data-i18n-en="Contact">Связаться</a>
+      <div class="hero-right">
+        <div class="phone-duo">
+          <div class="ph ph-a">
+            <div class="ph-notch"></div>
+            <img src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" alt="Domik Tracker">
+          </div>
+          <div class="ph ph-b">
+            <div class="ph-notch"></div>
+            <img src="assets/intima/screenshots/photo_1_2026-06-03_10-25-38.jpg" alt="Intima Tracker">
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="apps" class="section">
-      <div class="section-head">
-        <h2 data-i18n-ru="Приложения" data-i18n-en="Apps">Приложения</h2>
-        <p data-i18n-ru="Каталог будет расширяться по мере выхода новых проектов. Сейчас доступны Domik Tracker и Intima Tracker." data-i18n-en="This catalog will grow as new projects are released. Domik Tracker and Intima Tracker are available now.">Каталог будет расширяться по мере выхода новых проектов. Сейчас доступны Domik Tracker и Intima Tracker.</p>
+  <!-- ══ APPS ══ -->
+  <section id="apps" class="sec">
+    <div class="sec-inner">
+      <div class="apps-head rv">
+        <div class="sec-label" data-ru="ПРИЛОЖЕНИЯ" data-en="APPS">ПРИЛОЖЕНИЯ</div>
+        <h2 class="sec-title" data-ru="Что мы сделали" data-en="What We've Built">Что мы сделали</h2>
+        <p class="sec-sub" data-ru="Два приложения в App Store — для дома и для отношений." data-en="Two apps on the App Store — for home life and relationships.">
+          Два приложения в App Store — для дома и для отношений.
+        </p>
       </div>
 
-      <div class="apps-grid">
-        <article class="app-card" data-theme-choice="domik" tabindex="0">
-          <img src="assets/logo.png" alt="Domik Tracker app icon">
-          <div>
-            <p class="eyebrow">Domik Tracker</p>
-            <h3 data-i18n-ru="Домашние дела в одном месте" data-i18n-en="Home routines in one place">Домашние дела в одном месте</h3>
-            <p data-i18n-ru="Задачи, покупки, пространства и награды для семьи или домашней группы." data-i18n-en="Tasks, shopping, spaces, and rewards for a family or household group.">Задачи, покупки, пространства и награды для семьи или домашней группы.</p>
-            <div class="tag-row">
-              <span class="tag">iOS</span>
-              <span class="tag" data-i18n-ru="Дом" data-i18n-en="Home">Дом</span>
-              <span class="tag" data-i18n-ru="Задачи" data-i18n-en="Tasks">Задачи</span>
-              <span class="tag" data-i18n-ru="Награды" data-i18n-en="Rewards">Награды</span>
+      <!-- Domik Tracker -->
+      <div class="app-card rv">
+        <div class="app-text">
+          <div class="app-icon-row">
+            <div class="app-icon">
+              <img src="assets/logo.png" alt="Domik icon">
+            </div>
+            <div>
+              <div class="app-platform">iOS · App Store</div>
+              <div class="app-name-label">Domik Tracker</div>
             </div>
           </div>
-          <div class="app-card-actions">
-            <a class="button primary" href="app.html" data-theme-link="domik" data-i18n-ru="Открыть" data-i18n-en="Open">Открыть</a>
-            <a class="app-store-badge app-store-badge-small" href="https://apps.apple.com/us/app/domik-tracker-home-chores/id6769375316" target="_blank" rel="noopener" aria-label="Domik Tracker on the App Store">
-              <img src="assets/app-store-badge.png" alt="Download on the App Store">
+          <h3 class="app-title" data-ru="Домашние дела в одном месте" data-en="Home chores, all in one place">Домашние дела в одном месте</h3>
+          <p class="app-desc" data-ru="Задачи, покупки, пространства и награды для всей семьи. Делите дела между членами семьи, копите очки — и наводите порядок вместе." data-en="Tasks, shopping, spaces and rewards for the whole family. Share chores, earn points, and get things done together.">
+            Задачи, покупки, пространства и награды для всей семьи. Делите дела между членами семьи, копите очки — и наводите порядок вместе.
+          </p>
+          <div class="tags">
+            <span class="tag">iOS</span>
+            <span class="tag" data-ru="Дом"     data-en="Home">Дом</span>
+            <span class="tag" data-ru="Задачи"  data-en="Tasks">Задачи</span>
+            <span class="tag" data-ru="Покупки" data-en="Shopping">Покупки</span>
+            <span class="tag" data-ru="Награды" data-en="Rewards">Награды</span>
+            <span class="tag" data-ru="Семья"   data-en="Family">Семья</span>
+          </div>
+          <div class="app-actions">
+            <a href="https://apps.apple.com/us/app/domik-tracker-home-chores/id6769375316" target="_blank">
+              <img class="badge-img" src="assets/app-store-badge.png" alt="Download on App Store">
             </a>
+            <a href="app.html" class="btn-sm" data-ru="Подробнее →" data-en="Learn more →">Подробнее →</a>
           </div>
-        </article>
+        </div>
 
-        <article class="app-card intima-card" data-theme-choice="intima" tabindex="0">
-          <img src="assets/intima/logo.png" alt="Intima Tracker app icon">
-          <div>
-            <p class="eyebrow">Intima Tracker</p>
-            <h3 data-i18n-ru="Приватный трекер отношений" data-i18n-en="Private relationship tracker">Приватный трекер отношений</h3>
-            <p data-i18n-ru="Близость, настроение, желания и личные заметки в одном защищенном пространстве." data-i18n-en="Closeness, mood, desires, and private notes in one protected space.">Близость, настроение, желания и личные заметки в одном защищенном пространстве.</p>
-            <div class="tag-row">
-              <span class="tag">iOS</span>
-              <span class="tag" data-i18n-ru="Приватно" data-i18n-en="Private">Приватно</span>
-              <span class="tag" data-i18n-ru="Статистика" data-i18n-en="Statistics">Статистика</span>
-              <span class="tag" data-i18n-ru="Желания" data-i18n-en="Desires">Желания</span>
+        <div class="app-phones">
+          <div class="ph">
+            <div class="ph-notch"></div>
+            <img src="assets/screenshots/photo_3_2026-05-17_14-21-50.jpg" alt="">
+          </div>
+          <div class="ph">
+            <div class="ph-notch"></div>
+            <img src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" alt="">
+          </div>
+          <div class="ph">
+            <div class="ph-notch"></div>
+            <img src="assets/screenshots/photo_5_2026-05-17_14-21-50.jpg" alt="">
+          </div>
+        </div>
+      </div>
+
+      <!-- Intima Tracker -->
+      <div class="app-card flip rv d1">
+        <div class="app-text">
+          <div class="app-icon-row">
+            <div class="app-icon">
+              <img src="assets/intima/logo.png" alt="Intima icon">
+            </div>
+            <div>
+              <div class="app-platform">iOS · В разработке</div>
+              <div class="app-name-label">Intima Tracker</div>
             </div>
           </div>
-          <a class="button primary" href="intima-tracker.html" data-theme-link="intima" data-i18n-ru="Открыть" data-i18n-en="Open">Открыть</a>
-        </article>
+          <h3 class="app-title" data-ru="Приватный трекер отношений" data-en="Private relationship tracker">Приватный трекер отношений</h3>
+          <p class="app-desc" data-ru="Личный дневник отношений. Близость, настроение, желания и заметки — только для вас двоих. Вход через Face ID, данные хранятся локально." data-en="A private relationship journal. Intimacy, mood, desires and notes — just for the two of you. Face ID lock, data stays on device.">
+            Личный дневник отношений. Близость, настроение, желания и заметки — только для вас двоих. Вход через Face ID, данные хранятся локально.
+          </p>
+          <div class="tags">
+            <span class="tag">iOS</span>
+            <span class="tag" data-ru="Приватно"  data-en="Private">Приватно</span>
+            <span class="tag" data-ru="Статистика" data-en="Stats">Статистика</span>
+            <span class="tag" data-ru="Желания"   data-en="Desires">Желания</span>
+            <span class="tag" data-ru="Для двоих" data-en="Couples">Для двоих</span>
+          </div>
+          <div class="app-actions">
+            <a href="intima-tracker.html" class="btn-sm" data-ru="Подробнее →" data-en="Learn more →">Подробнее →</a>
+          </div>
+        </div>
 
-        <article class="soon-card">
-          <h3 data-i18n-ru="Будущие приложения" data-i18n-en="Future apps">Будущие приложения</h3>
-          <p data-i18n-ru="Здесь появятся следующие проекты." data-i18n-en="Future projects will appear here.">Здесь появятся следующие проекты.</p>
-        </article>
+        <div class="app-phones">
+          <div class="ph">
+            <div class="ph-notch"></div>
+            <img src="assets/intima/screenshots/photo_6_2026-06-03_10-25-38.jpg" alt="">
+          </div>
+          <div class="ph">
+            <div class="ph-notch"></div>
+            <img src="assets/intima/screenshots/photo_1_2026-06-03_10-25-38.jpg" alt="">
+          </div>
+          <div class="ph">
+            <div class="ph-notch"></div>
+            <img src="assets/intima/screenshots/photo_5_2026-06-03_10-25-38.jpg" alt="">
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section">
-      <div class="section-head">
-        <h2 data-i18n-ru="Обзор приложений" data-i18n-en="App previews">Обзор приложений</h2>
+  <!-- ══ GAMES ══ -->
+  <section id="games" class="sec">
+    <div class="sec-inner">
+      <div class="games-head rv">
+        <div class="sec-label" data-ru="ИГРЫ" data-en="GAMES">ИГРЫ</div>
+        <h2 class="sec-title" data-ru="Скоро в эфире" data-en="Coming Soon">Скоро в эфире</h2>
+        <p class="sec-sub" data-ru="Следующие проекты уже на подходе. Скоро здесь появятся новые игры." data-en="Next projects are on the way. New games coming soon.">
+          Следующие проекты уже на подходе. Скоро здесь появятся новые игры.
+        </p>
       </div>
-      <div class="screens-strip active" data-lang-panel="ru" aria-label="App screenshots">
-        <figure class="screenshot-frame" data-preview-app="domik"><img loading="lazy" src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" alt="Скриншот сводки Domik Tracker"></figure>
-        <figure class="screenshot-frame" data-preview-app="domik"><img loading="lazy" src="assets/screenshots/photo_3_2026-05-17_14-21-50.jpg" alt="Скриншот задач Domik Tracker"></figure>
-        <figure class="screenshot-frame" data-preview-app="domik"><img loading="lazy" src="assets/screenshots/photo_4_2026-05-17_14-21-50.jpg" alt="Скриншот покупок Domik Tracker"></figure>
-        <figure class="screenshot-frame" data-preview-app="domik"><img loading="lazy" src="assets/screenshots/photo_5_2026-05-17_14-21-50.jpg" alt="Скриншот наград Domik Tracker"></figure>
-        <figure class="screenshot-frame intima-preview-frame" data-preview-app="intima"><img loading="lazy" src="assets/intima/screenshots/photo_1_2026-06-03_10-25-38.jpg" alt="Скриншот главного экрана Intima Tracker"></figure>
-        <figure class="screenshot-frame intima-preview-frame" data-preview-app="intima"><img loading="lazy" src="assets/intima/screenshots/photo_4_2026-06-03_10-25-38.jpg" alt="Скриншот динамики рейтинга Intima Tracker"></figure>
-        <figure class="screenshot-frame intima-preview-frame" data-preview-app="intima"><img loading="lazy" src="assets/intima/screenshots/photo_6_2026-06-03_10-25-38.jpg" alt="Скриншот желаний Intima Tracker"></figure>
-        <figure class="screenshot-frame intima-preview-frame" data-preview-app="intima"><img loading="lazy" src="assets/intima/screenshots/photo_5_2026-06-03_10-25-38.jpg" alt="Скриншот добавления события Intima Tracker"></figure>
+      <div class="games-grid">
+        <div class="game-card rv">
+          <div class="gc-bg" style="background: linear-gradient(135deg,#160830 0%,#0b1835 100%)"></div>
+          <div class="gc-grid"></div>
+          <div class="gc-glow"></div>
+          <div class="soon-badge" data-ru="Скоро" data-en="Soon">Скоро</div>
+          <div class="gc-body">
+            <div class="gc-title" data-ru="Игра #1" data-en="Game #1">Игра #1</div>
+            <div class="gc-sub"  data-ru="Детали скоро" data-en="Details coming">Детали скоро</div>
+          </div>
+        </div>
+        <div class="game-card rv d1">
+          <div class="gc-bg" style="background: linear-gradient(135deg,#0b1a3c 0%,#190b30 100%)"></div>
+          <div class="gc-grid"></div>
+          <div class="gc-glow"></div>
+          <div class="soon-badge" data-ru="Скоро" data-en="Soon">Скоро</div>
+          <div class="gc-body">
+            <div class="gc-title" data-ru="Игра #2" data-en="Game #2">Игра #2</div>
+            <div class="gc-sub"  data-ru="Детали скоро" data-en="Details coming">Детали скоро</div>
+          </div>
+        </div>
+        <div class="game-card rv d2">
+          <div class="gc-bg" style="background: linear-gradient(135deg,#091a20 0%,#180a30 100%)"></div>
+          <div class="gc-grid"></div>
+          <div class="gc-glow"></div>
+          <div class="soon-badge" data-ru="Скоро" data-en="Soon">Скоро</div>
+          <div class="gc-body">
+            <div class="gc-title" data-ru="Игра #3" data-en="Game #3">Игра #3</div>
+            <div class="gc-sub"  data-ru="Детали скоро" data-en="Details coming">Детали скоро</div>
+          </div>
+        </div>
       </div>
-      <div class="screens-strip" data-lang-panel="en" aria-label="App screenshots">
-        <figure class="screenshot-frame" data-preview-app="domik"><img loading="lazy" src="assets/screenshots/photo_13_2026-05-17_14-21-50.jpg" alt="Domik Tracker dashboard screenshot"></figure>
-        <figure class="screenshot-frame" data-preview-app="domik"><img loading="lazy" src="assets/screenshots/photo_9_2026-05-17_14-21-50.jpg" alt="Domik Tracker tasks screenshot"></figure>
-        <figure class="screenshot-frame" data-preview-app="domik"><img loading="lazy" src="assets/screenshots/photo_10_2026-05-17_14-21-50.jpg" alt="Domik Tracker shopping screenshot"></figure>
-        <figure class="screenshot-frame" data-preview-app="domik"><img loading="lazy" src="assets/screenshots/photo_12_2026-05-17_14-21-50.jpg" alt="Domik Tracker rewards screenshot"></figure>
-        <figure class="screenshot-frame intima-preview-frame" data-preview-app="intima"><img loading="lazy" src="assets/intima/screenshots/photo_1_2026-06-03_10-25-38.jpg" alt="Intima Tracker home screenshot"></figure>
-        <figure class="screenshot-frame intima-preview-frame" data-preview-app="intima"><img loading="lazy" src="assets/intima/screenshots/photo_4_2026-06-03_10-25-38.jpg" alt="Intima Tracker rating dynamics screenshot"></figure>
-        <figure class="screenshot-frame intima-preview-frame" data-preview-app="intima"><img loading="lazy" src="assets/intima/screenshots/photo_6_2026-06-03_10-25-38.jpg" alt="Intima Tracker desires screenshot"></figure>
-        <figure class="screenshot-frame intima-preview-frame" data-preview-app="intima"><img loading="lazy" src="assets/intima/screenshots/photo_5_2026-06-03_10-25-38.jpg" alt="Intima Tracker add event screenshot"></figure>
-      </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <span>© 2026 Moonlit Meadow Studio</span>
-      <a href="mailto:moonlitmeadowstudio@gmail.com">moonlitmeadowstudio@gmail.com</a>
+  <!-- ══ ABOUT ══ -->
+  <section id="about" class="sec">
+    <div class="sec-inner">
+      <div class="rv">
+        <div class="sec-label" data-ru="О СТУДИИ" data-en="ABOUT">О СТУДИИ</div>
+        <h2 class="sec-title" data-ru="Indie до мозга костей" data-en="Indie to the Core">Indie до мозга костей</h2>
+      </div>
+      <div class="about-grid">
+        <div class="rv d1">
+          <p class="about-p" data-ru="Moonlit Meadow — маленькая независимая студия. Делаем приложения и игры — понятные, красивые, с вниманием к каждой детали." data-en="Moonlit Meadow is a small independent studio. We make apps and games — intuitive, beautiful, and crafted with care.">
+            Moonlit Meadow — маленькая независимая студия. Делаем приложения и игры — понятные, красивые, с вниманием к каждой детали.
+          </p>
+          <p class="about-p" data-ru="Каждый продукт — это чистый дизайн и реальная польза. Каталог постоянно растёт." data-en="Every product is clean design meeting real utility. Our catalog keeps growing.">
+            Каждый продукт — это чистый дизайн и реальная польза. Каталог постоянно растёт.
+          </p>
+        </div>
+        <div class="values rv d2">
+          <div class="val">
+            <div class="val-icon">🎮</div>
+            <div class="val-title" data-ru="Игры" data-en="Games">Игры</div>
+            <div class="val-desc"  data-ru="Не только утилиты — игры с характером и атмосферой." data-en="Not just utilities — games with character and atmosphere.">Не только утилиты — игры с характером и атмосферой.</div>
+          </div>
+          <div class="val">
+            <div class="val-icon">✦</div>
+            <div class="val-title" data-ru="Дизайн" data-en="Design">Дизайн</div>
+            <div class="val-desc"  data-ru="Красота и простота — цель, а не компромисс." data-en="Beauty and simplicity are the goal, not a trade-off.">Красота и простота — цель, а не компромисс.</div>
+          </div>
+          <div class="val">
+            <div class="val-icon">💎</div>
+            <div class="val-title" data-ru="Качество" data-en="Quality">Качество</div>
+            <div class="val-desc"  data-ru="Маленькая команда — большое внимание к каждому продукту." data-en="Small team, big focus on every product.">Маленькая команда — большое внимание к каждому продукту.</div>
+          </div>
+          <div class="val">
+            <div class="val-icon">🌱</div>
+            <div class="val-title" data-ru="Рост" data-en="Growth">Рост</div>
+            <div class="val-desc"  data-ru="Новые проекты в разработке — следи за релизами." data-en="New projects in the pipeline — stay tuned.">Новые проекты в разработке — следи за релизами.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer id="footer">
+    <div class="foot-inner">
+      <a href="#" class="foot-logo">
+        <img src="assets/logo.png" alt="MMS" style="width:32px;height:32px;border-radius:8px;object-fit:cover;">
+        <span class="foot-logo-text">Moonlit Meadow</span>
+      </a>
+      <div class="foot-links">
+        <a href="privacy.html" target="_blank" data-ru="Политика конфиденциальности" data-en="Privacy Policy">Политика конфиденциальности</a>
+        <a href="mailto:moonlitmeadowstudio@gmail.com">moonlitmeadowstudio@gmail.com</a>
+      </div>
+      <div class="foot-copy">© 2026 Moonlit Meadow</div>
     </div>
   </footer>
-  <script src="script.js"></script>
+
+</div><!-- /.layer -->
+
+<script>
+/* ══ STARS ══ */
+(function(){
+  const c = document.getElementById('stars');
+  const ctx = c.getContext('2d');
+  let W, H, stars;
+
+  function resize(){
+    W = c.width = window.innerWidth;
+    H = c.height = window.innerHeight;
+  }
+
+  function init(n){
+    stars = Array.from({length: n||220}, () => ({
+      x: Math.random()*W,
+      y: Math.random()*H,
+      r: Math.random()*1.3+.15,
+      a: Math.random()*.7+.1,
+      ph: Math.random()*Math.PI*2,
+      sp: Math.random()*.8+.2,
+      warm: Math.random() > 0.75
+    }));
+  }
+
+  let t0;
+  function frame(t){
+    if(!t0) t0=t;
+    const s = (t-t0)/1000;
+    ctx.clearRect(0,0,W,H);
+    for(const st of stars){
+      const a = st.a*(0.55+0.45*Math.sin(s*st.sp+st.ph));
+      ctx.beginPath();
+      ctx.arc(st.x, st.y, st.r, 0, Math.PI*2);
+      ctx.fillStyle = st.warm ? `rgba(240,220,150,${a*0.65})` : `rgba(200,215,255,${a})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  }
+
+  resize(); init();
+  requestAnimationFrame(frame);
+  window.addEventListener('resize', ()=>{ resize(); init(); });
+})();
+
+/* ══ SCROLL REVEAL ══ */
+(function(){
+  const els = document.querySelectorAll('.rv');
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+    });
+  }, { threshold:.1, rootMargin:'0px 0px -48px 0px' });
+  els.forEach(el=>io.observe(el));
+})();
+
+/* ══ NAV SCROLL ══ */
+(function(){
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll',()=>{
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  },{passive:true});
+})();
+
+/* ══ LANGUAGE TOGGLE ══ */
+(function(){
+  let lang = 'ru';
+  const btns = document.querySelectorAll('.lang-btn');
+
+  function apply(l){
+    lang = l;
+    btns.forEach(b => b.classList.toggle('on', b.dataset.lang===l));
+    document.querySelectorAll('[data-ru]').forEach(el=>{
+      const val = el.dataset[l];
+      if(val !== undefined) el.textContent = val;
+    });
+  }
+
+  btns.forEach(b => b.addEventListener('click', ()=> apply(b.dataset.lang)));
+})();
+</script>
 </body>
 </html>

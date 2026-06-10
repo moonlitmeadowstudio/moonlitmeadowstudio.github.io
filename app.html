@@ -3,118 +3,407 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Domik Tracker — Moonlit Meadow Studio</title>
-  <meta name="description" content="Domik Tracker app by Moonlit Meadow Studio.">
-  <link rel="icon" href="assets/logo.png">
-  <script>
-    (function () {
-      document.documentElement.classList.add("theme-domik");
-      document.documentElement.style.backgroundColor = "#fbfff4";
-      document.documentElement.style.colorScheme = "light";
-      try {
-        localStorage.setItem("developer-site-theme", "domik");
-      } catch (error) {}
-    })();
-  </script>
-  <link rel="stylesheet" href="styles.css">
+  <title>Domik Tracker — Moonlit Meadow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #07091c;
+      --surf: rgba(255,255,255,0.04);
+      --surf2: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.08);
+      --text: #eef0f8;
+      --muted: rgba(238,240,248,0.5);
+      --accent: #d4a83c;
+      --accent-dim: rgba(212,168,60,0.18);
+      --teal: #5db8e8;
+      --teal-dim: rgba(93,184,232,0.14);
+      --green: #4dbe8c;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+    #stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    body::after {
+      content: ''; position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .3;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
+      background-size: 300px 300px;
+    }
+    .layer { position: relative; z-index: 2; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+      height: 60px; display: flex; align-items: center; padding: 0 48px;
+      background: rgba(7,9,28,.75); backdrop-filter: blur(24px) saturate(1.4);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { max-width: 1100px; width: 100%; margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+    .nav-logo img { width: 28px; height: 28px; border-radius: 7px; object-fit: cover; }
+    .nav-logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: -.02em; }
+    .back-link { margin-left: auto; color: var(--muted); text-decoration: none; font-size: 13px; display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--surf); transition: all .2s; }
+    .back-link:hover { color: var(--text); border-color: rgba(255,255,255,.15); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; padding: 60px 48px 0;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 60px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .hero-left { padding: 60px 0; }
+    .app-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+    .app-icon-lg { width: 64px; height: 64px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); flex-shrink: 0; }
+    .app-icon-lg img { width: 100%; height: 100%; object-fit: cover; }
+    .app-eyebrow-text { }
+    .app-eyebrow-label { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+    .app-eyebrow-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(36px, 4.5vw, 60px);
+      font-weight: 800; letter-spacing: -.03em; line-height: 1.06;
+      margin-bottom: 20px;
+    }
+    .hero-title .hl {
+      background: linear-gradient(120deg, var(--accent) 0%, var(--green) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-desc { font-size: 17px; line-height: 1.7; color: var(--muted); margin-bottom: 32px; max-width: 420px; }
+
+    .hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 40px; }
+    .badge-img { height: 44px; opacity: .95; transition: opacity .2s; }
+    .badge-img:hover { opacity: 1; }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 12px; font-size: 14px; font-weight: 500; text-decoration: none; background: var(--surf); color: var(--text); border: 1px solid var(--border); transition: all .2s; }
+    .btn-ghost:hover { background: var(--surf2); border-color: rgba(255,255,255,.15); }
+
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .htag { padding: 5px 12px; background: var(--surf); border: 1px solid var(--border); border-radius: 999px; font-size: 12px; font-weight: 500; color: var(--muted); }
+
+    /* HERO PHONES */
+    .hero-right { display: flex; justify-content: center; align-items: center; height: 600px; position: relative; }
+    .hero-right::before { content: ''; position: absolute; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, var(--accent-dim), transparent 70%); pointer-events: none; }
+    .phone-stack { position: relative; width: 320px; height: 540px; }
+    .ph {
+      position: absolute; border-radius: 28px;
+      border: 1.5px solid rgba(255,255,255,.13); overflow: hidden;
+      background: #0b0b1c;
+      box-shadow: 0 2px 0 rgba(255,255,255,.06) inset, 0 40px 80px rgba(0,0,0,.7);
+    }
+    .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ph-notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 50px; height: 4px; background: rgba(255,255,255,.18); border-radius: 2px; z-index: 5; }
+    .ph-main { width: 200px; height: 433px; right: 0; top: 20px; z-index: 3; }
+    .ph-back { width: 170px; height: 368px; left: 0; top: 80px; z-index: 1; transform: rotate(-5deg); opacity: .8; }
+
+    /* FEATURES */
+    .sec { position: relative; z-index: 2; }
+    .sec-inner { max-width: 1100px; margin: 0 auto; padding: 100px 48px; }
+    .sec-label { font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .sec-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 3.5vw, 46px); font-weight: 800; letter-spacing: -.025em; line-height: 1.1; margin-bottom: 14px; }
+    .sec-sub { font-size: 16px; line-height: 1.65; color: var(--muted); max-width: 520px; margin-bottom: 56px; }
+
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .feat-card {
+      padding: 28px; border-radius: 18px;
+      background: var(--surf); border: 1px solid var(--border);
+      transition: background .2s, border-color .2s;
+    }
+    .feat-card:hover { background: var(--surf2); border-color: rgba(255,255,255,.12); }
+    .feat-icon { font-size: 28px; margin-bottom: 14px; }
+    .feat-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .feat-desc { font-size: 14px; line-height: 1.65; color: var(--muted); }
+
+    /* SCREENSHOTS */
+    .shots-track {
+      display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px;
+      scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+    }
+    .shots-track::-webkit-scrollbar { height: 4px; }
+    .shots-track::-webkit-scrollbar-track { background: transparent; }
+    .shots-track::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    .shot-ph {
+      flex-shrink: 0; width: 200px; height: 433px; border-radius: 24px;
+      border: 1.5px solid rgba(255,255,255,.1); overflow: hidden;
+      background: #0b0b1c;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    }
+    .shot-ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* HOW IT WORKS */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .step { padding: 32px; border-radius: 18px; background: var(--surf); border: 1px solid var(--border); position: relative; }
+    .step-num { font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800; color: rgba(255,255,255,.05); position: absolute; top: 16px; right: 20px; line-height: 1; }
+    .step-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+    .step-desc { font-size: 14px; line-height: 1.65; color: var(--muted); }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(212,168,60,.08) 0%, rgba(93,184,232,.06) 100%);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .cta-inner { max-width: 1100px; margin: 0 auto; padding: 80px 48px; text-align: center; }
+    .cta-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 3vw, 44px); font-weight: 800; letter-spacing: -.025em; margin-bottom: 16px; }
+    .cta-sub { font-size: 16px; color: var(--muted); margin-bottom: 36px; }
+    .cta-badges { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+    /* FOOTER */
+    footer { position: relative; z-index: 2; border-top: 1px solid var(--border); padding: 36px 48px; }
+    .foot-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .foot-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+    .foot-logo img { width: 24px; height: 24px; border-radius: 6px; object-fit: cover; }
+    .foot-logo span { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: -.02em; }
+    .foot-links { display: flex; gap: 20px; }
+    .foot-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color .2s; }
+    .foot-links a:hover { color: var(--text); }
+    .foot-copy { font-size: 12px; color: var(--muted); }
+
+    /* SCROLL REVEAL */
+    .rv { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .rv.d1 { transition-delay: .1s; } .rv.d2 { transition-delay: .2s; } .rv.d3 { transition-delay: .3s; }
+    .rv.show { opacity: 1; transform: none; }
+
+    @media (max-width: 860px) {
+      nav { padding: 0 20px; }
+      .hero { grid-template-columns: 1fr; padding: 80px 24px 0; min-height: auto; gap: 40px; }
+      .hero-right { height: 380px; }
+      .ph-main { width: 160px; height: 346px; }
+      .ph-back { width: 136px; height: 294px; }
+      .sec-inner { padding: 70px 24px; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      footer { padding: 32px 24px; }
+      .foot-inner { flex-direction: column; text-align: center; }
+      .cta-inner { padding: 60px 24px; }
+    }
+    @media (max-width: 560px) {
+      .features-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-<body data-page-app="domik">
-  <header class="site-header">
-    <nav class="nav" aria-label="Main navigation">
-      <a class="brand" href="index.html">
-        <img src="assets/logo.png" alt="Domik Tracker app icon">
-        <span>Moonlit Meadow Studio</span>
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="layer">
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="MMS">
+        <span class="nav-logo-text">Moonlit Meadow</span>
       </a>
-      <div class="nav-actions">
-        <div class="nav-links">
-          <a href="index.html" data-i18n-ru="Главная" data-i18n-en="Home">Главная</a>
-          <a class="active" href="index.html#apps" data-i18n-ru="Приложения" data-i18n-en="Apps">Приложения</a>
-          <a href="privacy.html" data-i18n-ru="Политика" data-i18n-en="Privacy">Политика</a>
-          <a href="contacts.html" data-i18n-ru="Контакты" data-i18n-en="Contacts">Контакты</a>
-        </div>
-        <div class="lang-switch" aria-label="Language switcher">
-          <button type="button" data-lang-button="ru">RU</button>
-          <button type="button" data-lang-button="en">EN</button>
-        </div>
-      </div>
-    </nav>
-  </header>
+      <a href="index.html" class="back-link">← Все проекты</a>
+    </div>
+  </nav>
 
-  <main class="page">
-    <section class="app-hero">
-      <div>
-        <p class="eyebrow" data-i18n-ru="Приложение" data-i18n-en="Application">Приложение</p>
-        <h1>Domik Tracker</h1>
-        <p data-i18n-ru="Помогает семье распределять домашние дела, вести покупки, управлять пространствами и мотивировать участников через баллы и награды." data-i18n-en="Helps a household manage chores, shopping, spaces, and motivation through points and rewards.">Помогает семье распределять домашние дела, вести покупки, управлять пространствами и мотивировать участников через баллы и награды.</p>
-        <div class="actions">
-          <a class="app-store-badge" href="https://apps.apple.com/us/app/domik-tracker-home-chores/id6769375316" target="_blank" rel="noopener" aria-label="Domik Tracker on the App Store">
-            <img src="assets/app-store-badge.png" alt="Download on the App Store">
-          </a>
-          <a class="button primary" href="#screenshots" data-i18n-ru="Скриншоты" data-i18n-en="Screenshots">Скриншоты</a>
-          <a class="button" href="privacy.html" data-i18n-ru="Политика конфиденциальности" data-i18n-en="Privacy policy">Политика конфиденциальности</a>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="app-eyebrow">
+        <div class="app-icon-lg">
+          <img src="assets/logo.png" alt="Domik">
+        </div>
+        <div class="app-eyebrow-text">
+          <div class="app-eyebrow-label">Приложение · App Store</div>
+          <div class="app-eyebrow-name">Domik Tracker</div>
         </div>
       </div>
 
-      <aside class="app-hero-card">
-        <img src="assets/logo.png" alt="Domik Tracker app icon">
-        <h2 data-i18n-ru="Домашние дела становятся понятнее" data-i18n-en="A clearer way to run a home">Домашние дела становятся понятнее</h2>
-        <p data-i18n-ru="Domik Tracker помогает семье быстро договориться о задачах, не забывать о покупках и видеть вклад каждого участника через баллы и награды." data-i18n-en="Domik Tracker helps households agree on chores faster, keep shopping under control, and make everyone's contribution visible with points and rewards.">Domik Tracker помогает семье быстро договориться о задачах, не забывать о покупках и видеть вклад каждого участника через баллы и награды.</p>
-      </aside>
-    </section>
+      <h1 class="hero-title">
+        Домашние дела —<br>
+        <span class="hl">в удовольствие</span>
+      </h1>
 
-    <section class="section">
-      <div class="section-head">
-        <h2 data-i18n-ru="Возможности" data-i18n-en="Features">Возможности</h2>
-      </div>
-      <div class="feature-grid">
-        <article class="panel">
-          <h3 data-i18n-ru="Задачи" data-i18n-en="Tasks">Задачи</h3>
-          <p data-i18n-ru="Назначение ответственных, сроки, повторы, приоритеты и напоминания." data-i18n-en="Assignees, due dates, repeats, priorities, and reminders.">Назначение ответственных, сроки, повторы, приоритеты и напоминания.</p>
-        </article>
-        <article class="panel">
-          <h3 data-i18n-ru="Покупки" data-i18n-en="Shopping">Покупки</h3>
-          <p data-i18n-ru="Общий список покупок по магазинам и категориям." data-i18n-en="A shared shopping list organized by stores and categories.">Общий список покупок по магазинам и категориям.</p>
-        </article>
-        <article class="panel">
-          <h3 data-i18n-ru="Пространства" data-i18n-en="Spaces">Пространства</h3>
-          <p data-i18n-ru="Дом, квартира, комнаты и объекты группы в одном месте." data-i18n-en="Homes, apartments, rooms, and group objects in one place.">Дом, квартира, комнаты и объекты группы в одном месте.</p>
-        </article>
-        <article class="panel">
-          <h3 data-i18n-ru="Награды" data-i18n-en="Rewards">Награды</h3>
-          <p data-i18n-ru="Участники создают награды друг для друга и обменивают на них баллы за выполненные дела." data-i18n-en="Household members create rewards for each other and redeem points earned from completed chores.">Участники создают награды друг для друга и обменивают на них баллы за выполненные дела.</p>
-        </article>
-      </div>
-    </section>
+      <p class="hero-desc">
+        Задачи, список покупок, зоны дома и система наград — всё в одном месте. Распределяйте дела между членами семьи, копите очки и наводите порядок вместе.
+      </p>
 
-    <section id="screenshots" class="section">
-      <div class="section-head">
-        <h2 data-i18n-ru="Скриншоты" data-i18n-en="Screenshots">Скриншоты</h2>
+      <div class="hero-actions">
+        <a href="https://apps.apple.com/us/app/domik-tracker-home-chores/id6769375316" target="_blank">
+          <img class="badge-img" src="assets/app-store-badge.png" alt="App Store">
+        </a>
+        <a href="mailto:moonlitmeadowstudio@gmail.com" class="btn-ghost">Написать нам</a>
       </div>
-      <div class="gallery-grid active" data-lang-panel="ru">
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" alt="Скриншот сводки"></figure>
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_3_2026-05-17_14-21-50.jpg" alt="Скриншот задач"></figure>
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_5_2026-05-17_14-21-50.jpg" alt="Скриншот наград"></figure>
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_4_2026-05-17_14-21-50.jpg" alt="Скриншот покупок"></figure>
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_1_2026-05-17_14-21-50.jpg" alt="Скриншот профиля"></figure>
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_6_2026-05-17_14-21-50.jpg" alt="Скриншот уведомлений"></figure>
-      </div>
-      <div class="gallery-grid" data-lang-panel="en">
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_13_2026-05-17_14-21-50.jpg" alt="Dashboard screen"></figure>
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_9_2026-05-17_14-21-50.jpg" alt="Tasks screen"></figure>
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_12_2026-05-17_14-21-50.jpg" alt="Rewards screen"></figure>
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_10_2026-05-17_14-21-50.jpg" alt="Shopping screen"></figure>
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_11_2026-05-17_14-21-50.jpg" alt="Task details screen"></figure>
-        <figure class="screenshot-frame"><img loading="lazy" src="assets/screenshots/photo_8_2026-05-17_14-21-50.jpg" alt="Profile screen"></figure>
-      </div>
-    </section>
-  </main>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <span>© 2026 Moonlit Meadow Studio</span>
-      <a href="mailto:moonlitmeadowstudio@gmail.com">moonlitmeadowstudio@gmail.com</a>
+      <div class="hero-tags">
+        <span class="htag">iOS</span>
+        <span class="htag">Бесплатно</span>
+        <span class="htag">Дом</span>
+        <span class="htag">Семья</span>
+        <span class="htag">Задачи</span>
+        <span class="htag">Покупки</span>
+        <span class="htag">Награды</span>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="phone-stack">
+        <div class="ph ph-back">
+          <div class="ph-notch"></div>
+          <img src="assets/screenshots/photo_3_2026-05-17_14-21-50.jpg" alt="">
+        </div>
+        <div class="ph ph-main">
+          <div class="ph-notch"></div>
+          <img src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="sec" id="features">
+    <div class="sec-inner">
+      <div class="rv">
+        <div class="sec-label">Возможности</div>
+        <h2 class="sec-title">Всё для порядка дома</h2>
+        <p class="sec-sub">Domik — это не просто список задач. Это система, которая делает быт управляемым и даже немного игровым.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feat-card rv">
+          <div class="feat-icon">🏠</div>
+          <div class="feat-title">Пространства</div>
+          <div class="feat-desc">Разделите дом на зоны — кухня, спальня, гостиная, балкон. Задачи привязаны к конкретному месту.</div>
+        </div>
+        <div class="feat-card rv d1">
+          <div class="feat-icon">✅</div>
+          <div class="feat-title">Задачи и чеклисты</div>
+          <div class="feat-desc">Создавайте задачи, назначайте исполнителей, ставьте дедлайны. Всё наглядно и без лишнего.</div>
+        </div>
+        <div class="feat-card rv d2">
+          <div class="feat-icon">🛒</div>
+          <div class="feat-title">Список покупок</div>
+          <div class="feat-desc">Умный список с категориями. Добавляйте, отмечайте, делитесь — и больше не забывайте хлеб.</div>
+        </div>
+        <div class="feat-card rv">
+          <div class="feat-icon">🏆</div>
+          <div class="feat-title">Система наград</div>
+          <div class="feat-desc">Выполненные дела приносят очки. Копите их и обменивайте на призы — настраивайте сами.</div>
+        </div>
+        <div class="feat-card rv d1">
+          <div class="feat-icon">👥</div>
+          <div class="feat-title">Для всей семьи</div>
+          <div class="feat-desc">Приглашайте членов семьи или соседей по квартире. Каждый видит свои задачи и общую сводку.</div>
+        </div>
+        <div class="feat-card rv d2">
+          <div class="feat-icon">📊</div>
+          <div class="feat-title">Сводка и прогресс</div>
+          <div class="feat-desc">Главный экран показывает что сделано, что ждёт и сколько очков у каждого участника.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <section class="sec" style="background: linear-gradient(180deg, transparent, rgba(212,168,60,.04), transparent);">
+    <div class="sec-inner">
+      <div class="rv">
+        <div class="sec-label">Скриншоты</div>
+        <h2 class="sec-title">Как это выглядит</h2>
+        <p class="sec-sub">Чистый дизайн, который не мешает делать дела.</p>
+      </div>
+      <div class="shots-track rv d1">
+        <div class="shot-ph">
+          <img src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" alt="Сводка">
+        </div>
+        <div class="shot-ph">
+          <img src="assets/screenshots/photo_3_2026-05-17_14-21-50.jpg" alt="Задачи">
+        </div>
+        <div class="shot-ph">
+          <img src="assets/screenshots/photo_4_2026-05-17_14-21-50.jpg" alt="Покупки">
+        </div>
+        <div class="shot-ph">
+          <img src="assets/screenshots/photo_5_2026-05-17_14-21-50.jpg" alt="Награды">
+        </div>
+        <div class="shot-ph">
+          <img src="assets/screenshots/photo_13_2026-05-17_14-21-50.jpg" alt="">
+        </div>
+        <div class="shot-ph">
+          <img src="assets/screenshots/photo_9_2026-05-17_14-21-50.jpg" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="sec">
+    <div class="sec-inner">
+      <div class="rv">
+        <div class="sec-label">Как начать</div>
+        <h2 class="sec-title">Три шага до порядка</h2>
+        <p class="sec-sub">Настройка занимает пару минут, а результат виден сразу.</p>
+      </div>
+      <div class="steps">
+        <div class="step rv">
+          <div class="step-num">01</div>
+          <div class="step-title">Создайте дом</div>
+          <div class="step-desc">Добавьте пространства — кухня, спальня, общие зоны. Пригласите членов семьи через QR-код или ссылку.</div>
+        </div>
+        <div class="step rv d1">
+          <div class="step-num">02</div>
+          <div class="step-title">Добавьте задачи</div>
+          <div class="step-desc">Создавайте задачи в нужных зонах, назначайте исполнителей и указывайте, когда нужно сделать.</div>
+        </div>
+        <div class="step rv d2">
+          <div class="step-num">03</div>
+          <div class="step-title">Выполняйте и получайте очки</div>
+          <div class="step-desc">Отмечайте задачи как выполненные, копите очки и обменивайте их на награды, которые сами же и придумали.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section sec">
+    <div class="cta-inner rv">
+      <div class="sec-label" style="text-align:center;">Скачать</div>
+      <h2 class="cta-title">Начните наводить порядок сегодня</h2>
+      <p class="cta-sub">Бесплатно в App Store. Без подписки для базового функционала.</p>
+      <div class="cta-badges">
+        <a href="https://apps.apple.com/us/app/domik-tracker-home-chores/id6769375316" target="_blank">
+          <img class="badge-img" src="assets/app-store-badge.png" alt="App Store" style="height:52px;">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-inner">
+      <a href="index.html" class="foot-logo">
+        <img src="assets/logo.png" alt="MMS">
+        <span>Moonlit Meadow</span>
+      </a>
+      <div class="foot-links">
+        <a href="index.html">Главная</a>
+        <a href="intima-tracker.html">Intima Tracker</a>
+        <a href="privacy.html">Политика</a>
+        <a href="mailto:moonlitmeadowstudio@gmail.com">Контакт</a>
+      </div>
+      <div class="foot-copy">© 2026 Moonlit Meadow</div>
     </div>
   </footer>
-  <script src="script.js"></script>
+
+</div>
+
+<script>
+(function(){
+  const c=document.getElementById('stars'),ctx=c.getContext('2d');
+  let W,H,stars;
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
+  function init(){stars=Array.from({length:180},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+.15,a:Math.random()*.6+.1,ph:Math.random()*Math.PI*2,sp:Math.random()*.7+.2,warm:Math.random()>.75}));}
+  let t0;
+  function frame(t){if(!t0)t0=t;const s=(t-t0)/1000;ctx.clearRect(0,0,W,H);for(const st of stars){const a=st.a*(0.55+0.45*Math.sin(s*st.sp+st.ph));ctx.beginPath();ctx.arc(st.x,st.y,st.r,0,Math.PI*2);ctx.fillStyle=st.warm?`rgba(240,220,150,${a*0.65})`:`rgba(200,215,255,${a})`;ctx.fill();}requestAnimationFrame(frame);}
+  resize();init();requestAnimationFrame(frame);
+  window.addEventListener('resize',()=>{resize();init();});
+})();
+
+(function(){
+  const els=document.querySelectorAll('.rv');
+  const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('show');io.unobserve(x.target);}});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(el=>io.observe(el));
+})();
+</script>
 </body>
 </html>

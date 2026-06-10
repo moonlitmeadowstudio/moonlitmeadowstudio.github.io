@@ -3,178 +3,508 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — Moonlit Meadow Studio</title>
-  <meta name="description" content="Privacy Policy for Moonlit Meadow Studio apps: Domik Tracker and Intima Tracker.">
-  <link rel="icon" href="assets/logo.png">
-  <script>
-    (function () {
-      try {
-        var theme = localStorage.getItem("developer-site-theme");
-        var isIntima = theme === "intima";
-        document.documentElement.classList.add(isIntima ? "theme-intima" : "theme-domik");
-        document.documentElement.style.backgroundColor = isIntima ? "#09050a" : "#fbfff4";
-        document.documentElement.style.colorScheme = isIntima ? "dark" : "light";
-      } catch (error) {
-        document.documentElement.classList.add("theme-domik");
-        document.documentElement.style.backgroundColor = "#fbfff4";
-        document.documentElement.style.colorScheme = "light";
-      }
-    })();
-  </script>
-  <link rel="stylesheet" href="styles.css">
+  <title>Политика конфиденциальности — Moonlit Meadow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #07091c;
+      --surf: rgba(255,255,255,0.04);
+      --surf2: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.08);
+      --text: #eef0f8;
+      --muted: rgba(238,240,248,0.52);
+      --accent: #d4a83c;
+      --teal: #5db8e8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Stars */
+    #stars {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    }
+
+    /* Grain */
+    body::after {
+      content: ''; position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .3;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
+      background-size: 300px 300px;
+    }
+
+    .layer { position: relative; z-index: 2; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+      height: 60px; display: flex; align-items: center; padding: 0 48px;
+      background: rgba(7,9,28,.75);
+      backdrop-filter: blur(24px) saturate(1.4);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 860px; width: 100%; margin: 0 auto;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--text);
+    }
+    .nav-logo img { width: 28px; height: 28px; border-radius: 7px; object-fit: cover; }
+    .nav-logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: -.02em; }
+    .back-btn {
+      margin-left: auto;
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--muted); text-decoration: none; font-size: 13px;
+      padding: 6px 14px; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--surf);
+      transition: all .2s;
+    }
+    .back-btn:hover { color: var(--text); border-color: rgba(255,255,255,.15); }
+
+    /* MAIN */
+    main {
+      max-width: 860px; margin: 0 auto;
+      padding: 100px 48px 80px;
+    }
+
+    .page-label {
+      font-size: 11px; font-weight: 600; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+    }
+    .page-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800; letter-spacing: -.025em; line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .page-meta {
+      font-size: 13.5px; color: var(--muted); margin-bottom: 56px;
+      display: flex; gap: 20px; flex-wrap: wrap;
+    }
+    .page-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* LANG TOGGLE */
+    .lang-toggle {
+      display: flex; gap: 2px;
+      background: var(--surf); border: 1px solid var(--border);
+      border-radius: 8px; padding: 3px; margin-left: auto;
+    }
+    .lang-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
+      letter-spacing: .06em; padding: 4px 9px; border-radius: 5px;
+      color: var(--muted); transition: all .2s;
+    }
+    .lang-btn.on { background: var(--accent); color: #07091c; }
+
+    /* TOC */
+    .toc { display: none; }
+
+    /* SECTIONS */
+    .policy-section {
+      margin-bottom: 52px;
+      padding-bottom: 52px;
+      border-bottom: 1px solid var(--border);
+    }
+    .policy-section:last-child { border-bottom: none; }
+
+    .sec-num {
+      font-size: 11px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+    }
+    .sec-heading {
+      font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700;
+      letter-spacing: -.015em; margin-bottom: 18px;
+    }
+
+    p { font-size: 15.5px; line-height: 1.78; color: var(--muted); margin-bottom: 16px; }
+    p:last-child { margin-bottom: 0; }
+    p strong { color: var(--text); font-weight: 500; }
+
+    ul, ol { padding-left: 22px; margin-bottom: 16px; }
+    li { font-size: 15px; line-height: 1.75; color: var(--muted); margin-bottom: 6px; }
+    li strong { color: var(--text); font-weight: 500; }
+
+    .highlight-box {
+      background: rgba(212,168,60,.07);
+      border: 1px solid rgba(212,168,60,.18);
+      border-radius: 14px; padding: 18px 24px; margin-bottom: 48px;
+    }
+    .highlight-box p { color: rgba(238,240,248,0.72); margin: 0; font-size: 14.5px; line-height: 1.65; }
+    .app-tag {
+      display: inline-flex; align-items: center;
+      background: rgba(212,168,60,.12); border: 1px solid rgba(212,168,60,.2);
+      border-radius: 6px; padding: 1px 8px;
+      font-size: 12.5px; font-weight: 600; color: var(--accent); margin: 0 2px;
+    }
+
+    a.inline { color: var(--teal); text-decoration: none; }
+    a.inline:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 48px; position: relative; z-index: 2;
+    }
+    .foot-inner {
+      max-width: 860px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .foot-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--text);
+    }
+    .foot-logo img { width: 24px; height: 24px; border-radius: 6px; object-fit: cover; }
+    .foot-logo span { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: -.02em; }
+    .foot-copy { font-size: 13px; color: var(--muted); }
+
+    @media (max-width: 700px) {
+      nav { padding: 0 20px; }
+      main { padding: 90px 24px 60px; }
+      footer { padding: 32px 24px; }
+      .foot-inner { flex-direction: column; }
+    }
+
+    /* RU/EN visibility */
+    [data-lang-block="en"] { display: none; }
+    body.lang-en [data-lang-block="ru"] { display: none; }
+    body.lang-en [data-lang-block="en"] { display: block; }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav" aria-label="Main navigation">
-      <a class="brand" href="index.html">
-        <img src="assets/logo.png" alt="Studio logo">
-        <span>Moonlit Meadow Studio</span>
+
+<canvas id="stars"></canvas>
+
+<div class="layer">
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="MMS">
+        <span class="nav-logo-text">Moonlit Meadow</span>
       </a>
-      <div class="nav-actions">
-        <div class="nav-links">
-          <a href="index.html" data-i18n-ru="Главная" data-i18n-en="Home">Главная</a>
-          <a href="index.html#apps" data-i18n-ru="Приложения" data-i18n-en="Apps">Приложения</a>
-          <a class="active" href="privacy.html" data-i18n-ru="Политика" data-i18n-en="Privacy">Политика</a>
-          <a href="contacts.html" data-i18n-ru="Контакты" data-i18n-en="Contacts">Контакты</a>
-        </div>
-        <div class="lang-switch" aria-label="Language switcher">
-          <button type="button" data-lang-button="ru">RU</button>
-          <button type="button" data-lang-button="en">EN</button>
-        </div>
+      <a href="index.html" class="back-btn">← На главную</a>
+      <div class="lang-toggle" style="margin-left:12px;">
+        <button class="lang-btn on" data-lang="ru">RU</button>
+        <button class="lang-btn"    data-lang="en">EN</button>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
 
-  <main class="page">
-    <section class="page-title">
-      <h1 data-i18n-ru="Политика конфиденциальности" data-i18n-en="Privacy Policy">Политика конфиденциальности</h1>
-    </section>
+  <main>
 
-    <section class="policy-shell">
-      <div class="policy-content" data-lang-panel="en">
-        <h1>Privacy Policy — Moonlit Meadow Studio</h1>
-        <p><strong>Apps:</strong> Domik Tracker and Intima Tracker</p>
-        <p><strong>Effective date:</strong> May 26, 2026</p>
-
-        <p>This Privacy Policy describes how Moonlit Meadow Studio ("we", "app", "apps") collects, uses, and shares information when you use our mobile applications Domik Tracker and Intima Tracker.</p>
-
-        <h2>1. Information We Collect</h2>
-        <p><strong>Account data:</strong><br>Name and email address, or anonymized relay email, provided by Apple via Sign in with Apple and processed through Firebase Authentication. We do not have access to your Apple ID password.</p>
-        <p><strong>Domik Tracker app content:</strong><br>Tasks, shopping lists, household data, family member data, reward records, and other information you create inside the app. This data may be stored in Firebase Firestore and synced across your household members.</p>
-        <p><strong>Intima Tracker app content:</strong><br>Intimacy records, event types, duration, mood, desires, private notes, statistics data, privacy settings, and partner space data that you create inside the app. This data may be stored locally on your device and, when sync, backup, or partner sharing features are used, may be processed through Firebase.</p>
-        <p><strong>Device identifiers:</strong><br>Advertising identifier (IDFA), if you grant tracking permission via App Tracking Transparency (ATT). This may be used by advertising and analytics partners for advertising attribution, measurement, and personalization. You may deny this permission; the apps remain fully usable without it.</p>
-        <p><strong>Notification token:</strong><br>Domik Tracker may use a device push token to deliver task reminders and household notifications, if this feature is enabled.<br>Intima Tracker does not use push notifications if this feature is not available in the app.</p>
-        <p><strong>Analytics and diagnostics data:</strong><br>App launches, session information, app usage events, device information, operating system version, app version, crash reports, and performance diagnostics. This data may be processed through AppMetrica to help us understand app usage and improve stability.</p>
-
-        <h2>2. How We Use Your Information</h2>
-        <p>We use your information:</p>
-        <ul>
-          <li>To authenticate your account and sync app data.</li>
-          <li>To store and display the data you create inside the apps.</li>
-          <li>To provide partner or household sharing features, if enabled.</li>
-          <li>To provide backup and restore functionality, if used.</li>
-          <li>To send notifications in Domik Tracker, if configured by the user.</li>
-          <li>To display advertisements via Yandex Mobile Ads SDK. If ATT permission is granted, ads may be personalized.</li>
-          <li>To analyze app usage, measure performance, detect crashes, and improve the apps through AppMetrica.</li>
-        </ul>
-
-        <h2>3. Third-Party Services</h2>
-        <p><strong>Apple Sign in with Apple:</strong><br>Used for authentication. Apple may provide a private relay email instead of your real email.<br>Apple Privacy Policy: <a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a></p>
-        <p><strong>Firebase (Google):</strong><br>Used for authentication, cloud storage, synchronization, backup, and sharing features where applicable.<br>Firebase Privacy Policy: <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></p>
-        <p><strong>AppMetrica:</strong><br>Used for analytics, diagnostics, crash reporting, attribution, and app performance measurement.<br>AppMetrica Privacy Information: <a href="https://appmetrica.yandex.com/docs/en/data-security/app-privacy-apple">https://appmetrica.yandex.com/docs/en/data-security/app-privacy-apple</a><br>Yandex Privacy Policy: <a href="https://yandex.com/legal/confidential/">https://yandex.com/legal/confidential/</a></p>
-        <p><strong>Yandex Mobile Ads:</strong><br>Used for in-app advertising. May process device identifiers and ad interaction data for ad delivery, measurement, and personalization where permitted.<br>Yandex Privacy Policy: <a href="https://yandex.com/legal/confidential/">https://yandex.com/legal/confidential/</a></p>
-
-        <h2>4. Data Sharing</h2>
-        <p>We do not sell your personal data. Data is shared only with the third-party services listed above, solely to provide app functionality, synchronization, backup, analytics, diagnostics, advertising, and measurement.</p>
-
-        <h2>5. Data Retention</h2>
-        <p>Your data is stored as long as your account is active or as needed to provide app functionality. You may request deletion of your data by contacting us at the email below.</p>
-
-        <h2>6. Your Rights</h2>
-        <ul>
-          <li>You have the right to access, correct, or delete your personal data.</li>
-          <li>California residents may request disclosure of data collected and opt out of its sale. We do not sell personal data.</li>
-          <li>EU residents may exercise rights under GDPR by contacting us directly.</li>
-          <li>You can withdraw ATT permission at any time in iOS Settings -> Privacy & Security -> Tracking.</li>
-          <li>You can stop further data collection by deleting the app.</li>
-        </ul>
-
-        <h2>7. Children's Privacy</h2>
-        <p>Our apps are not directed to children under 13. We do not knowingly collect personal data from children under 13. If you believe a child under 13 has provided us data, please contact us and we will delete it promptly.</p>
-
-        <h2>8. Changes to This Policy</h2>
-        <p>We may update this Privacy Policy from time to time. Changes will be reflected by updating the effective date at the top of this page.</p>
-
-        <h2>9. Contact</h2>
-        <p>Questions about this Privacy Policy:<br><a href="mailto:moonlitmeadowstudio@gmail.com">moonlitmeadowstudio@gmail.com</a></p>
+    <!-- RU VERSION -->
+    <div data-lang-block="ru">
+      <div class="page-label">Политика конфиденциальности</div>
+      <h1 class="page-title">Как мы работаем с данными</h1>
+      <div class="page-meta">
+        <span>📅 Дата обновления: 8 июня 2026</span>
+        <span>🏢 Moonlit Meadow</span>
       </div>
 
-      <div class="policy-content" data-lang-panel="ru">
-        <h1>Политика конфиденциальности — Moonlit Meadow Studio</h1>
-        <p><strong>Приложения:</strong> Domik Tracker и Intima Tracker</p>
-        <p><strong>Дата вступления в силу:</strong> 26 мая 2026 г.</p>
-
-        <p>Настоящая Политика конфиденциальности описывает, как Moonlit Meadow Studio ("мы", "приложение", "приложения") собирает, использует и передает информацию при использовании наших мобильных приложений Domik Tracker и Intima Tracker.</p>
-
-        <h2>1. Какую информацию мы собираем</h2>
-        <p><strong>Данные аккаунта:</strong><br>Имя и адрес электронной почты или скрытый relay email, предоставленный Apple через Sign in with Apple и обрабатываемый Firebase Authentication. Мы не имеем доступа к вашему паролю Apple ID.</p>
-        <p><strong>Данные Domik Tracker:</strong><br>Задачи, списки покупок, данные дома, данные членов семьи, записи о наградах и другая информация, которую вы создаете внутри приложения. Эти данные могут храниться в Firebase Firestore и синхронизироваться между участниками вашего дома.</p>
-        <p><strong>Данные Intima Tracker:</strong><br>Записи о близости, типы событий, длительность, настроение, желания, личные заметки, данные статистики, настройки приватности и данные совместного пространства с партнером, которые вы создаете внутри приложения. Эти данные могут храниться локально на устройстве, а при использовании синхронизации, резервного копирования или совместного доступа — обрабатываться через Firebase.</p>
-        <p><strong>Идентификаторы устройства:</strong><br>Рекламный идентификатор IDFA, если вы разрешили отслеживание через App Tracking Transparency (ATT). Он может использоваться рекламными и аналитическими партнерами для атрибуции рекламы, измерений и персонализации. Вы можете отказать в разрешении; приложения продолжат работать без ограничений.</p>
-        <p><strong>Токен уведомлений:</strong><br>Domik Tracker может использовать push-токен устройства для отправки напоминаний о задачах и домашних уведомлений, если такая функция включена.<br>Intima Tracker не использует push-уведомления, если эта функция отсутствует в приложении.</p>
-        <p><strong>Аналитические и диагностические данные:</strong><br>Запуски приложения, информация о сессиях, события использования приложения, информация об устройстве, версия операционной системы, версия приложения, отчеты о сбоях и данные производительности. Эти данные могут обрабатываться через AppMetrica, чтобы мы могли понимать использование приложений и улучшать их стабильность.</p>
-
-        <h2>2. Как мы используем вашу информацию</h2>
-        <p>Мы используем данные:</p>
-        <ul>
-          <li>Для входа в аккаунт и синхронизации данных.</li>
-          <li>Для хранения и отображения данных, которые вы создаете в приложениях.</li>
-          <li>Для работы совместного доступа, если он включен.</li>
-          <li>Для резервного копирования и восстановления данных, если такая функция используется.</li>
-          <li>Для отправки уведомлений в Domik Tracker, если они настроены пользователем.</li>
-          <li>Для показа рекламы через Yandex Mobile Ads SDK. Если разрешение ATT предоставлено, реклама может быть персонализированной.</li>
-          <li>Для анализа использования приложений, измерения производительности, выявления сбоев и улучшения приложений через AppMetrica.</li>
-        </ul>
-
-        <h2>3. Сторонние сервисы</h2>
-        <p><strong>Apple Sign in with Apple:</strong><br>Используется для аутентификации. Apple может предоставить скрытый relay email вместо вашего реального email.<br>Политика конфиденциальности Apple: <a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a></p>
-        <p><strong>Firebase (Google):</strong><br>Используется для аутентификации, облачного хранения, синхронизации, резервного копирования и совместного доступа, если соответствующие функции включены.<br>Политика конфиденциальности Firebase: <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></p>
-        <p><strong>AppMetrica:</strong><br>Используется для аналитики, диагностики, отчетов о сбоях, атрибуции и измерения производительности приложений.<br>Информация AppMetrica о конфиденциальности: <a href="https://appmetrica.yandex.com/docs/en/data-security/app-privacy-apple">https://appmetrica.yandex.com/docs/en/data-security/app-privacy-apple</a><br>Политика конфиденциальности Яндекса: <a href="https://yandex.ru/legal/confidential/">https://yandex.ru/legal/confidential/</a></p>
-        <p><strong>Yandex Mobile Ads:</strong><br>Используется для показа рекламы в приложениях. Может обрабатывать идентификаторы устройства и данные взаимодействия с рекламой для показа рекламы, измерений и персонализации, если это разрешено.<br>Политика конфиденциальности Яндекса: <a href="https://yandex.ru/legal/confidential/">https://yandex.ru/legal/confidential/</a></p>
-
-        <h2>4. Передача данных</h2>
-        <p>Мы не продаем ваши персональные данные. Данные передаются только сторонним сервисам, перечисленным выше, исключительно для работы приложений, синхронизации, резервного копирования, аналитики, диагностики, рекламы и измерений.</p>
-
-        <h2>5. Хранение данных</h2>
-        <p>Ваши данные хранятся, пока ваш аккаунт активен или пока это необходимо для работы приложений. Вы можете запросить удаление данных, написав нам на email ниже.</p>
-
-        <h2>6. Ваши права</h2>
-        <ul>
-          <li>Вы имеете право запросить доступ, исправление или удаление ваших персональных данных.</li>
-          <li>Жители Калифорнии могут запросить раскрытие информации о собранных данных и отказаться от их продажи. Мы не продаем персональные данные.</li>
-          <li>Жители ЕС могут воспользоваться правами по GDPR, связавшись с нами напрямую.</li>
-          <li>Вы можете отозвать разрешение ATT в любое время: iOS Settings -> Privacy & Security -> Tracking.</li>
-          <li>Вы можете прекратить дальнейший сбор данных, удалив приложение.</li>
-        </ul>
-
-        <h2>7. Конфиденциальность детей</h2>
-        <p>Наши приложения не предназначены для детей младше 13 лет. Мы сознательно не собираем персональные данные детей младше 13 лет. Если вы считаете, что ребенок младше 13 лет предоставил нам данные, свяжитесь с нами, и мы удалим такие данные.</p>
-
-        <h2>8. Изменения политики</h2>
-        <p>Мы можем время от времени обновлять настоящую Политику конфиденциальности. Изменения будут отражены обновлением даты вступления в силу в верхней части документа.</p>
-
-        <h2>9. Контакты</h2>
-        <p>Вопросы по Политике конфиденциальности:<br><a href="mailto:moonlitmeadowstudio@gmail.com">moonlitmeadowstudio@gmail.com</a></p>
+      <div class="highlight-box">
+        <p>Эта политика распространяется на все приложения студии:
+          <span class="app-tag">Domik Tracker</span>
+          <span class="app-tag">Intima Tracker</span>
+          и будущие проекты. Пользуясь нашими приложениями, вы принимаете условия этой политики.
+        </p>
       </div>
-    </section>
+
+      <nav class="toc">
+        <div class="toc-title">Содержание</div>
+        <ol>
+          <li><a href="#collect">Какие данные мы собираем</a></li>
+          <li><a href="#use">Как мы используем данные</a></li>
+          <li><a href="#ads">Реклама и аналитика</a></li>
+          <li><a href="#third">Третьи стороны</a></li>
+          <li><a href="#store">Хранение данных</a></li>
+          <li><a href="#children">Дети</a></li>
+          <li><a href="#rights">Ваши права</a></li>
+          <li><a href="#contact">Контакт</a></li>
+        </ol>
+      </nav>
+
+      <div class="policy-section" id="collect">
+        <div class="sec-num">01</div>
+        <h2 class="sec-heading">Какие данные мы собираем</h2>
+        <p>Мы собираем минимально необходимый объём данных для работы приложений. В зависимости от приложения это может включать:</p>
+        <ul>
+          <li><strong>Данные, которые вы вводите сами</strong> — задачи, покупки, события, заметки, настройки. Хранятся локально на вашем устройстве или в iCloud.</li>
+          <li><strong>Технические данные</strong> — версия ОС, модель устройства, идентификатор установки — для работы аналитики и рекламы.</li>
+          <li><strong>Данные об использовании</strong> — какие экраны открывались, как долго использовалось приложение. Собираются анонимно.</li>
+          <li><strong>Рекламный идентификатор (IDFA)</strong> — при наличии вашего согласия, для показа релевантной рекламы.</li>
+        </ul>
+        <p>Мы <strong>не собираем</strong> имена, email, номера телефонов или платёжные данные напрямую. Покупки обрабатываются через Apple App Store.</p>
+      </div>
+
+      <div class="policy-section" id="use">
+        <div class="sec-num">02</div>
+        <h2 class="sec-heading">Как мы используем данные</h2>
+        <ul>
+          <li>Обеспечение работы основных функций приложения</li>
+          <li>Синхронизация данных через iCloud (если включена)</li>
+          <li>Улучшение продуктов на основе анонимной статистики</li>
+          <li>Показ рекламы через партнёрские сети (в приложениях с рекламой)</li>
+          <li>Диагностика ошибок и сбоев</li>
+        </ul>
+        <p>Мы не продаём ваши данные третьим лицам и не используем их для профилирования вне целей рекламы.</p>
+      </div>
+
+      <div class="policy-section" id="ads">
+        <div class="sec-num">03</div>
+        <h2 class="sec-heading">Реклама и аналитика</h2>
+        <p>Некоторые наши приложения содержат рекламу, которую показывают партнёрские рекламные сети. Они могут собирать данные об устройстве и активности для показа персонализированных объявлений.</p>
+        <ul>
+          <li>Реклама может быть персонализированной или контекстной</li>
+          <li>Для персонализации мы запрашиваем разрешение App Tracking Transparency (ATT) на iOS 14.5+</li>
+          <li>Если вы отказываете в разрешении — реклама остаётся, но не персонализированной</li>
+          <li>Вы можете изменить настройку рекламного трекинга в <strong>Настройки → Конфиденциальность → Отслеживание</strong></li>
+        </ul>
+        <p>Для аналитики и ошибок мы используем стандартные инструменты (Firebase, Crashlytics или аналогичные). Данные анонимизируются.</p>
+      </div>
+
+      <div class="policy-section" id="third">
+        <div class="sec-num">04</div>
+        <h2 class="sec-heading">Третьи стороны</h2>
+        <p>Наши приложения могут использовать следующие сторонние сервисы:</p>
+        <ul>
+          <li><strong>Apple iCloud</strong> — синхронизация данных между устройствами</li>
+          <li><strong>Apple App Store</strong> — обработка покупок и подписок</li>
+          <li><strong>Google Firebase / AdMob</strong> — аналитика, отчёты об ошибках и реклама</li>
+          <li><strong>Другие рекламные сети</strong> — в зависимости от конкретного приложения</li>
+        </ul>
+        <p>Каждая из этих служб имеет собственную политику конфиденциальности. Мы не контролируем, как они обрабатывают данные за пределами наших приложений.</p>
+      </div>
+
+      <div class="policy-section" id="store">
+        <div class="sec-num">05</div>
+        <h2 class="sec-heading">Хранение данных</h2>
+        <p>Основные данные приложений хранятся <strong>локально на вашем устройстве</strong>. При удалении приложения данные удаляются вместе с ним (если не сохранены в iCloud).</p>
+        <p>Аналитические и рекламные данные хранятся на серверах партнёров согласно их политикам.</p>
+      </div>
+
+      <div class="policy-section" id="children">
+        <div class="sec-num">06</div>
+        <h2 class="sec-heading">Дети</h2>
+        <p>Наши приложения не предназначены для детей до 13 лет (или иного возраста, установленного местным законодательством). Мы сознательно не собираем данные детей. Если вы считаете, что ребёнок предоставил нам данные — свяжитесь с нами для их удаления.</p>
+      </div>
+
+      <div class="policy-section" id="rights">
+        <div class="sec-num">07</div>
+        <h2 class="sec-heading">Ваши права</h2>
+        <p>В зависимости от страны проживания вы можете иметь право на:</p>
+        <ul>
+          <li>Доступ к данным, которые мы о вас храним</li>
+          <li>Исправление неточных данных</li>
+          <li>Удаление ваших данных</li>
+          <li>Отказ от персонализированной рекламы</li>
+          <li>Подачу жалобы в надзорный орган</li>
+        </ul>
+        <p>Для большинства запросов: удалите приложение — и связанные с ним локальные данные исчезнут. По иным вопросам напишите нам.</p>
+      </div>
+
+      <div class="policy-section" id="contact">
+        <div class="sec-num">08</div>
+        <h2 class="sec-heading">Контакт</h2>
+        <p>Если у вас есть вопросы по этой политике или запросы на удаление данных — напишите нам:</p>
+        <p><strong>Email:</strong> <a href="mailto:moonlitmeadowstudio@gmail.com" class="inline">moonlitmeadowstudio@gmail.com</a></p>
+        <p>Мы постараемся ответить в течение 5 рабочих дней.</p>
+        <p>Moonlit Meadow оставляет за собой право обновлять эту политику. При существенных изменениях мы уведомим пользователей через приложение.</p>
+      </div>
+    </div>
+
+    <!-- EN VERSION -->
+    <div data-lang-block="en">
+      <div class="page-label">Privacy Policy</div>
+      <h1 class="page-title">How We Handle Your Data</h1>
+      <div class="page-meta">
+        <span>📅 Last updated: June 8, 2026</span>
+        <span>🏢 Moonlit Meadow</span>
+      </div>
+
+      <div class="highlight-box">
+        <p>This policy applies to all studio apps:
+          <span class="app-tag">Domik Tracker</span>
+          <span class="app-tag">Intima Tracker</span>
+          and future projects. By using our apps, you agree to this policy.
+        </p>
+      </div>
+
+      <nav class="toc">
+        <div class="toc-title">Contents</div>
+        <ol>
+          <li><a href="#collect">Data We Collect</a></li>
+          <li><a href="#use">How We Use Data</a></li>
+          <li><a href="#ads">Advertising & Analytics</a></li>
+          <li><a href="#third">Third Parties</a></li>
+          <li><a href="#store">Data Storage</a></li>
+          <li><a href="#children">Children</a></li>
+          <li><a href="#rights">Your Rights</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <div class="policy-section">
+        <div class="sec-num">01</div>
+        <h2 class="sec-heading">Data We Collect</h2>
+        <p>We collect the minimum data necessary to operate our apps. Depending on the app, this may include:</p>
+        <ul>
+          <li><strong>Data you enter yourself</strong> — tasks, shopping lists, events, notes, settings. Stored locally or in iCloud.</li>
+          <li><strong>Technical data</strong> — OS version, device model, installation identifier — for analytics and advertising purposes.</li>
+          <li><strong>Usage data</strong> — which screens were visited and for how long. Collected anonymously.</li>
+          <li><strong>Advertising identifier (IDFA)</strong> — with your consent, for serving relevant ads.</li>
+        </ul>
+        <p>We do <strong>not</strong> collect names, emails, phone numbers, or payment details directly. Purchases are processed through the Apple App Store.</p>
+      </div>
+
+      <div class="policy-section">
+        <div class="sec-num">02</div>
+        <h2 class="sec-heading">How We Use Data</h2>
+        <ul>
+          <li>Operating core app features</li>
+          <li>iCloud sync across devices (if enabled)</li>
+          <li>Improving products using anonymous usage stats</li>
+          <li>Serving ads through partner ad networks (in apps with ads)</li>
+          <li>Crash reporting and diagnostics</li>
+        </ul>
+        <p>We do not sell your data to third parties or use it for profiling outside of advertising purposes.</p>
+      </div>
+
+      <div class="policy-section">
+        <div class="sec-num">03</div>
+        <h2 class="sec-heading">Advertising & Analytics</h2>
+        <p>Some of our apps contain advertising served by partner networks. They may collect device and activity data to serve personalized ads.</p>
+        <ul>
+          <li>Ads may be personalized or contextual</li>
+          <li>For personalization we request App Tracking Transparency (ATT) permission on iOS 14.5+</li>
+          <li>If you decline — ads remain, but will not be personalized</li>
+          <li>You can change your tracking preference in <strong>Settings → Privacy → Tracking</strong></li>
+        </ul>
+        <p>For analytics and crash reporting we use standard tools (Firebase, Crashlytics or similar). Data is anonymized.</p>
+      </div>
+
+      <div class="policy-section">
+        <div class="sec-num">04</div>
+        <h2 class="sec-heading">Third Parties</h2>
+        <p>Our apps may use these third-party services:</p>
+        <ul>
+          <li><strong>Apple iCloud</strong> — data sync across devices</li>
+          <li><strong>Apple App Store</strong> — purchase and subscription processing</li>
+          <li><strong>Google Firebase / AdMob</strong> — analytics, crash reports, and advertising</li>
+          <li><strong>Other ad networks</strong> — depending on the specific app</li>
+        </ul>
+        <p>Each service has its own privacy policy. We do not control how they process data outside our apps.</p>
+      </div>
+
+      <div class="policy-section">
+        <div class="sec-num">05</div>
+        <h2 class="sec-heading">Data Storage</h2>
+        <p>Core app data is stored <strong>locally on your device</strong>. Deleting the app removes the data (unless saved to iCloud).</p>
+        <p>Analytics and advertising data are stored on partners' servers per their own policies.</p>
+      </div>
+
+      <div class="policy-section">
+        <div class="sec-num">06</div>
+        <h2 class="sec-heading">Children</h2>
+        <p>Our apps are not intended for children under 13 (or the applicable age in your jurisdiction). We do not knowingly collect children's data. If you believe a child has provided us with data — please contact us for deletion.</p>
+      </div>
+
+      <div class="policy-section">
+        <div class="sec-num">07</div>
+        <h2 class="sec-heading">Your Rights</h2>
+        <p>Depending on your country, you may have the right to:</p>
+        <ul>
+          <li>Access the data we hold about you</li>
+          <li>Correct inaccurate data</li>
+          <li>Delete your data</li>
+          <li>Opt out of personalized advertising</li>
+          <li>Lodge a complaint with a supervisory authority</li>
+        </ul>
+        <p>For most requests: deleting the app removes local data. For other inquiries, please write to us.</p>
+      </div>
+
+      <div class="policy-section">
+        <div class="sec-num">08</div>
+        <h2 class="sec-heading">Contact</h2>
+        <p>If you have questions about this policy or data deletion requests, contact us:</p>
+        <p><strong>Email:</strong> <a href="mailto:moonlitmeadowstudio@gmail.com" class="inline">moonlitmeadowstudio@gmail.com</a></p>
+        <p>We aim to respond within 5 business days.</p>
+        <p>Moonlit Meadow reserves the right to update this policy. We will notify users of significant changes through the app.</p>
+      </div>
+    </div>
+
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <span>© 2026 Moonlit Meadow Studio</span>
-      <a href="mailto:moonlitmeadowstudio@gmail.com">moonlitmeadowstudio@gmail.com</a>
+  <footer>
+    <div class="foot-inner">
+      <a href="index.html" class="foot-logo">
+        <img src="assets/logo.png" alt="MMS">
+        <span>Moonlit Meadow</span>
+      </a>
+      <div class="foot-copy">© 2026 Moonlit Meadow</div>
     </div>
   </footer>
-  <script src="script.js"></script>
+
+</div>
+
+<script>
+/* STARS */
+(function(){
+  const c = document.getElementById('stars');
+  const ctx = c.getContext('2d');
+  let W, H, stars;
+  function resize(){ W = c.width = window.innerWidth; H = c.height = window.innerHeight; }
+  function init(){
+    stars = Array.from({length:160}, ()=>({
+      x: Math.random()*W, y: Math.random()*H,
+      r: Math.random()*1.2+.15,
+      a: Math.random()*.6+.1,
+      ph: Math.random()*Math.PI*2,
+      sp: Math.random()*.7+.2,
+      warm: Math.random()>.75
+    }));
+  }
+  let t0;
+  function frame(t){
+    if(!t0) t0=t;
+    const s=(t-t0)/1000;
+    ctx.clearRect(0,0,W,H);
+    for(const st of stars){
+      const a=st.a*(0.55+0.45*Math.sin(s*st.sp+st.ph));
+      ctx.beginPath(); ctx.arc(st.x,st.y,st.r,0,Math.PI*2);
+      ctx.fillStyle = st.warm?`rgba(240,220,150,${a*0.65})`:`rgba(200,215,255,${a})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  }
+  resize(); init(); requestAnimationFrame(frame);
+  window.addEventListener('resize',()=>{ resize(); init(); });
+})();
+
+/* LANG TOGGLE */
+(function(){
+  const btns = document.querySelectorAll('.lang-btn');
+  const backBtn = document.querySelector('.back-btn');
+  function setLang(l){
+    document.body.classList.toggle('lang-en', l==='en');
+    btns.forEach(b=>b.classList.toggle('on', b.dataset.lang===l));
+    backBtn.textContent = l==='en' ? '← Back' : '← На главную';
+  }
+  btns.forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+})();
+</script>
 </body>
 </html>
