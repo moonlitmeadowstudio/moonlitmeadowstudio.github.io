@@ -551,11 +551,11 @@
         <div class="phone-duo">
           <div class="ph ph-a">
             <div class="ph-notch"></div>
-            <img src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" alt="Domik Tracker">
+            <img src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" data-ru-src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" data-en-src="assets/screenshots/photo_13_2026-05-17_14-21-50.jpg" alt="Domik Tracker">
           </div>
           <div class="ph ph-b">
             <div class="ph-notch"></div>
-            <img src="assets/intima/screenshots/photo_1_2026-06-03_10-25-38.jpg" alt="Intima Tracker">
+            <img src="assets/intima/promo-screens/ru/photo_1_2026-06-03_13-27-04.jpg" data-ru-src="assets/intima/promo-screens/ru/photo_1_2026-06-03_13-27-04.jpg" data-en-src="assets/intima/promo-screens/en/photo_1_2026-06-03_10-25-38.jpg" alt="Intima Tracker">
           </div>
         </div>
       </div>
@@ -608,15 +608,15 @@
         <div class="app-phones">
           <div class="ph">
             <div class="ph-notch"></div>
-            <img src="assets/screenshots/photo_3_2026-05-17_14-21-50.jpg" alt="">
+            <img src="assets/screenshots/photo_3_2026-05-17_14-21-50.jpg" data-ru-src="assets/screenshots/photo_3_2026-05-17_14-21-50.jpg" data-en-src="assets/screenshots/photo_9_2026-05-17_14-21-50.jpg" alt="">
           </div>
           <div class="ph">
             <div class="ph-notch"></div>
-            <img src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" alt="">
+            <img src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" data-ru-src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" data-en-src="assets/screenshots/photo_13_2026-05-17_14-21-50.jpg" alt="">
           </div>
           <div class="ph">
             <div class="ph-notch"></div>
-            <img src="assets/screenshots/photo_5_2026-05-17_14-21-50.jpg" alt="">
+            <img src="assets/screenshots/photo_5_2026-05-17_14-21-50.jpg" data-ru-src="assets/screenshots/photo_5_2026-05-17_14-21-50.jpg" data-en-src="assets/screenshots/photo_12_2026-05-17_14-21-50.jpg" alt="">
           </div>
         </div>
       </div>
@@ -655,15 +655,15 @@
         <div class="app-phones">
           <div class="ph">
             <div class="ph-notch"></div>
-            <img src="assets/intima/screenshots/photo_6_2026-06-03_10-25-38.jpg" alt="">
+            <img src="assets/intima/promo-screens/ru/photo_6_2026-06-03_13-27-04.jpg" data-ru-src="assets/intima/promo-screens/ru/photo_6_2026-06-03_13-27-04.jpg" data-en-src="assets/intima/promo-screens/en/photo_6_2026-06-03_10-25-38.jpg" alt="">
           </div>
           <div class="ph">
             <div class="ph-notch"></div>
-            <img src="assets/intima/screenshots/photo_1_2026-06-03_10-25-38.jpg" alt="">
+            <img src="assets/intima/promo-screens/ru/photo_1_2026-06-03_13-27-04.jpg" data-ru-src="assets/intima/promo-screens/ru/photo_1_2026-06-03_13-27-04.jpg" data-en-src="assets/intima/promo-screens/en/photo_1_2026-06-03_10-25-38.jpg" alt="">
           </div>
           <div class="ph">
             <div class="ph-notch"></div>
-            <img src="assets/intima/screenshots/photo_5_2026-06-03_10-25-38.jpg" alt="">
+            <img src="assets/intima/promo-screens/ru/photo_5_2026-06-03_13-27-04.jpg" data-ru-src="assets/intima/promo-screens/ru/photo_5_2026-06-03_13-27-04.jpg" data-en-src="assets/intima/promo-screens/en/photo_5_2026-06-03_10-25-38.jpg" alt="">
           </div>
         </div>
       </div>
@@ -848,6 +848,10 @@
     document.querySelectorAll('[data-ru]').forEach(el=>{
       const val = el.dataset[l];
       if(val !== undefined) el.textContent = val;
+    });
+    document.querySelectorAll('img[data-ru-src][data-en-src]').forEach(img=>{
+      const src = img.dataset[`${l}Src`];
+      if(src) img.src = src;
     });
   }
 
