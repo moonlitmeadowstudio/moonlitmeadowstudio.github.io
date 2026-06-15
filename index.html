@@ -240,6 +240,22 @@
       transform: rotate(5deg);
       z-index: 2;
     }
+    .ph-game {
+      position: absolute;
+      width: 218px; height: 123px;
+      left: 50%; bottom: -22px;
+      transform: translateX(-50%) rotate(-4deg);
+      border-radius: 16px;
+      border: 1.5px solid rgba(255,255,255,.14);
+      overflow: hidden;
+      background: #0b0b1c;
+      box-shadow:
+        0 2px 0 rgba(255,255,255,.06) inset,
+        0 30px 64px rgba(0,0,0,.78),
+        0 0 0 .5px rgba(0,0,0,.6);
+      z-index: 3;
+    }
+    .ph-game img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* ════════════════════════════
        SHARED SECTION
@@ -354,6 +370,32 @@
     .app-phones .ph:nth-child(1) { left: 0; transform: rotate(-6deg) translateY(12px); z-index: 1; }
     .app-phones .ph:nth-child(2) { left: 50%; transform: translateX(-50%); z-index: 3; }
     .app-phones .ph:nth-child(3) { right: 0; transform: rotate(6deg) translateY(12px); z-index: 1; }
+
+    /* ── LANDSCAPE SHOTS (games) ── */
+    .app-shots { display: flex; flex-direction: column; gap: 16px; width: 100%; }
+    .shot {
+      border-radius: 14px; overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 60px rgba(0,0,0,.55);
+    }
+    .shot img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
+    .shot:nth-child(1) { transform: rotate(-1.5deg); }
+    .shot:nth-child(2) { transform: rotate(1.5deg); }
+
+    /* ── COMING SOON TAG (inline, non-link) ── */
+    .soon-tag {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 16px; border-radius: 10px;
+      font-size: 13px; font-weight: 600;
+      letter-spacing: .02em;
+      background: var(--teal-dim);
+      border: 1px solid rgba(93,184,232,.28);
+      color: var(--teal);
+    }
+    .soon-tag::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--teal); box-shadow: 0 0 8px var(--teal);
+    }
 
     /* ════════════════════════════
        GAMES
@@ -485,6 +527,7 @@
       .ph { width: 140px; height: 303px; }
       .phone-duo { width: 220px; height: 370px; }
       .ph-a { top: 40px; }
+      .ph-game { width: 168px; height: 95px; bottom: -16px; }
       .sec-inner { padding: 80px 24px; }
       .app-card { grid-template-columns: 1fr; padding: 36px 28px; gap: 40px; }
       .app-card.flip .app-text { order: 1; }
@@ -556,6 +599,9 @@
           <div class="ph ph-b">
             <div class="ph-notch"></div>
             <img src="assets/intima/promo-screens/ru/photo_1_2026-06-03_13-27-04.jpg" data-ru-src="assets/intima/promo-screens/ru/photo_1_2026-06-03_13-27-04.jpg" data-en-src="assets/intima/promo-screens/en/photo_1_2026-06-03_10-25-38.jpg" alt="Intima Tracker">
+          </div>
+          <div class="ph-game">
+            <img src="assets/shtamm/ru/1.png" data-ru-src="assets/shtamm/ru/1.png" data-en-src="assets/shtamm/en/1.png" alt="Štamm: Genome Race">
           </div>
         </div>
       </div>
@@ -675,40 +721,46 @@
     <div class="sec-inner">
       <div class="games-head rv">
         <div class="sec-label" data-ru="ИГРЫ" data-en="GAMES">ИГРЫ</div>
-        <h2 class="sec-title" data-ru="Скоро" data-en="Coming Soon">Скоро</h2>
-        <p class="sec-sub" data-ru="Следующие проекты уже на подходе. Скоро здесь появятся новые игры." data-en="Next projects are on the way. New games coming soon.">
-          Следующие проекты уже на подходе. Скоро здесь появятся новые игры.
+        <h2 class="sec-title" data-ru="Наши игры" data-en="Our Games">Наши игры</h2>
+        <p class="sec-sub" data-ru="Первая игра студии уже на подходе — а за ней последуют новые." data-en="Our first game is on the way — with more to follow.">
+          Первая игра студии уже на подходе — а за ней последуют новые.
         </p>
       </div>
-      <div class="games-grid">
-        <div class="game-card rv">
-          <div class="gc-bg" style="background: linear-gradient(135deg,#160830 0%,#0b1835 100%)"></div>
-          <div class="gc-grid"></div>
-          <div class="gc-glow"></div>
-          <div class="soon-badge" data-ru="Скоро" data-en="Soon">Скоро</div>
-          <div class="gc-body">
-            <div class="gc-title" data-ru="Игра #1" data-en="Game #1">Игра #1</div>
-            <div class="gc-sub"  data-ru="Детали скоро" data-en="Details coming">Детали скоро</div>
+
+      <!-- Štamm: Genome Race -->
+      <div class="app-card rv">
+        <div class="app-text">
+          <div class="app-icon-row">
+            <div class="app-icon">
+              <img src="assets/shtamm/icon.png" alt="Štamm icon">
+            </div>
+            <div>
+              <div class="app-platform">iOS · App Store</div>
+              <div class="app-name-label" data-ru="Штамм: Гонка геномов" data-en="Strain: Genome Race">Штамм: Гонка геномов</div>
+            </div>
+          </div>
+          <h3 class="app-title" data-ru="Эволюционируй. Заражай. Побеждай." data-en="Evolve. Infect. Conquer.">Эволюционируй. Заражай. Побеждай.</h3>
+          <p class="app-desc" data-ru="Лёгкая стратегия в одно касание: пускай потоки клеток, захватывай соседей и расширяй колонию, пока вся карта не станет твоей. Эволюционируй штамм, открывай мутации и выживай." data-en="A one-tap strategy: send streams of cells, seize your neighbors and grow your colony until the whole map is yours. Evolve your strain, unlock mutations and survive.">
+            Лёгкая стратегия в одно касание: пускай потоки клеток, захватывай соседей и расширяй колонию, пока вся карта не станет твоей. Эволюционируй штамм, открывай мутации и выживай.
+          </p>
+          <div class="tags">
+            <span class="tag">iOS</span>
+            <span class="tag" data-ru="Стратегия"   data-en="Strategy">Стратегия</span>
+            <span class="tag" data-ru="Аркада"      data-en="Arcade">Аркада</span>
+            <span class="tag" data-ru="Эволюция"    data-en="Evolution">Эволюция</span>
+            <span class="tag" data-ru="Одно касание" data-en="One-tap">Одно касание</span>
+          </div>
+          <div class="app-actions">
+            <span class="soon-tag" data-ru="Скоро в App Store" data-en="Coming soon to App Store">Скоро в App Store</span>
           </div>
         </div>
-        <div class="game-card rv d1">
-          <div class="gc-bg" style="background: linear-gradient(135deg,#0b1a3c 0%,#190b30 100%)"></div>
-          <div class="gc-grid"></div>
-          <div class="gc-glow"></div>
-          <div class="soon-badge" data-ru="Скоро" data-en="Soon">Скоро</div>
-          <div class="gc-body">
-            <div class="gc-title" data-ru="Игра #2" data-en="Game #2">Игра #2</div>
-            <div class="gc-sub"  data-ru="Детали скоро" data-en="Details coming">Детали скоро</div>
+
+        <div class="app-shots">
+          <div class="shot">
+            <img src="assets/shtamm/ru/1.png" data-ru-src="assets/shtamm/ru/1.png" data-en-src="assets/shtamm/en/1.png" alt="Štamm gameplay">
           </div>
-        </div>
-        <div class="game-card rv d2">
-          <div class="gc-bg" style="background: linear-gradient(135deg,#091a20 0%,#180a30 100%)"></div>
-          <div class="gc-grid"></div>
-          <div class="gc-glow"></div>
-          <div class="soon-badge" data-ru="Скоро" data-en="Soon">Скоро</div>
-          <div class="gc-body">
-            <div class="gc-title" data-ru="Игра #3" data-en="Game #3">Игра #3</div>
-            <div class="gc-sub"  data-ru="Детали скоро" data-en="Details coming">Детали скоро</div>
+          <div class="shot">
+            <img src="assets/shtamm/ru/2.png" data-ru-src="assets/shtamm/ru/2.png" data-en-src="assets/shtamm/en/2.png" alt="Štamm gameplay">
           </div>
         </div>
       </div>
