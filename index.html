@@ -121,17 +121,20 @@
        HERO
     ════════════════════════════ */
     #hero {
-      min-height: 100vh;
+      min-height: 92vh;
       padding: 60px 48px 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      gap: 60px;
-      max-width: 1160px;
+      text-align: center;
+      max-width: 820px;
       margin: 0 auto;
     }
 
     .hero-left { padding: 60px 0; }
+    .hero-sub { margin-left: auto; margin-right: auto; }
+    .hero-actions { justify-content: center; }
 
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
@@ -590,22 +593,6 @@
           <a href="#footer" class="btn btn-outline" data-ru="Связаться" data-en="Contact us">Связаться</a>
         </div>
       </div>
-
-      <div class="hero-right">
-        <div class="phone-duo">
-          <div class="ph ph-a">
-            <div class="ph-notch"></div>
-            <img src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" data-ru-src="assets/screenshots/photo_7_2026-05-17_14-21-50.jpg" data-en-src="assets/screenshots/photo_13_2026-05-17_14-21-50.jpg" alt="Domik Tracker">
-          </div>
-          <div class="ph ph-b">
-            <div class="ph-notch"></div>
-            <img src="assets/intima/promo-screens/ru/photo_1_2026-06-03_13-27-04.jpg" data-ru-src="assets/intima/promo-screens/ru/photo_1_2026-06-03_13-27-04.jpg" data-en-src="assets/intima/promo-screens/en/photo_1_2026-06-03_10-25-38.jpg" alt="Intima Tracker">
-          </div>
-          <div class="ph-game">
-            <img src="assets/shtamm/ru/1.png" data-ru-src="assets/shtamm/ru/1.png" data-en-src="assets/shtamm/en/1.png" alt="Štamm: Genome Race">
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -723,8 +710,8 @@
       <div class="games-head rv">
         <div class="sec-label" data-ru="ИГРЫ" data-en="GAMES">ИГРЫ</div>
         <h2 class="sec-title" data-ru="Наши игры" data-en="Our Games">Наши игры</h2>
-        <p class="sec-sub" data-ru="Первая игра студии уже на подходе — а за ней последуют новые." data-en="Our first game is on the way — with more to follow.">
-          Первая игра студии уже на подходе — а за ней последуют новые.
+        <p class="sec-sub" data-ru="Игры студии уже на подходе — скоро в App Store." data-en="Our games are on the way — coming soon to the App Store.">
+          Игры студии уже на подходе — скоро в App Store.
         </p>
       </div>
 
@@ -762,6 +749,50 @@
           </div>
           <div class="shot">
             <img src="assets/shtamm/ru/2.png" data-ru-src="assets/shtamm/ru/2.png" data-en-src="assets/shtamm/en/2.png" alt="Štamm gameplay">
+          </div>
+        </div>
+      </div>
+
+      <!-- Lucky Drop -->
+      <div class="app-card flip rv d1">
+        <div class="app-text">
+          <div class="app-icon-row">
+            <div class="app-icon">
+              <img src="assets/lucky-drop/icon.png" alt="Lucky Drop icon">
+            </div>
+            <div>
+              <div class="app-platform">iOS · App Store</div>
+              <div class="app-name-label">Lucky Drop</div>
+            </div>
+          </div>
+          <h3 class="app-title" data-ru="Роняй шары — объединяй числа" data-en="Drop balls, merge numbers">Роняй шары — объединяй числа</h3>
+          <p class="app-desc" data-ru="Яркая аркада-головоломка с приятной физикой. Роняй шары с числами, смотри, как они отскакивают от штырьков, сливай одинаковые в комбо и поднимай множитель. Бомбы, молотки, радужные шары, ежедневные награды и таблица лидеров." data-en="A bright arcade puzzler with satisfying physics. Drop numbered balls, watch them bounce off the pegs, merge matching ones into combos and crank up the multiplier. Bombs, hammers, rainbow balls, daily rewards and leaderboards.">
+            Яркая аркада-головоломка с приятной физикой. Роняй шары с числами, смотри, как они отскакивают от штырьков, сливай одинаковые в комбо и поднимай множитель. Бомбы, молотки, радужные шары, ежедневные награды и таблица лидеров.
+          </p>
+          <div class="tags">
+            <span class="tag">iOS</span>
+            <span class="tag" data-ru="Аркада"      data-en="Arcade">Аркада</span>
+            <span class="tag" data-ru="Головоломка" data-en="Puzzle">Головоломка</span>
+            <span class="tag" data-ru="Физика"      data-en="Physics">Физика</span>
+            <span class="tag" data-ru="Комбо"       data-en="Combos">Комбо</span>
+          </div>
+          <div class="app-actions">
+            <span class="soon-tag" data-ru="Скоро в App Store" data-en="Coming soon to App Store">Скоро в App Store</span>
+          </div>
+        </div>
+
+        <div class="app-phones">
+          <div class="ph">
+            <div class="ph-notch"></div>
+            <img src="assets/lucky-drop/ru/1.png" data-ru-src="assets/lucky-drop/ru/1.png" data-en-src="assets/lucky-drop/en/1.png" alt="Lucky Drop gameplay">
+          </div>
+          <div class="ph">
+            <div class="ph-notch"></div>
+            <img src="assets/lucky-drop/ru/2.png" data-ru-src="assets/lucky-drop/ru/2.png" data-en-src="assets/lucky-drop/en/2.png" alt="Lucky Drop gameplay">
+          </div>
+          <div class="ph">
+            <div class="ph-notch"></div>
+            <img src="assets/lucky-drop/ru/3.png" data-ru-src="assets/lucky-drop/ru/3.png" data-en-src="assets/lucky-drop/en/3.png" alt="Lucky Drop gameplay">
           </div>
         </div>
       </div>
